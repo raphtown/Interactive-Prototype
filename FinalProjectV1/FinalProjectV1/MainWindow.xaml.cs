@@ -7,6 +7,12 @@
  * 
  * 2.1.stSelection which allow use to select start time
  * 2.2.etSelection which allow use to set end time
+ * ========== ignore the above ===================
+*/
+/*
+ * buttons:
+ * c1: is the continue button at initial first time user guide page
+ * c2: is the continue button at new select time page
  * 
 */
 
@@ -27,6 +33,8 @@ using System.Windows.Shapes;
 using Microsoft.Kinect;
 using Coding4Fun.Kinect.Wpf;
 using System.Windows.Threading;
+using System.Windows.Threading;
+
 
 namespace FinalProjectV1
 {
@@ -40,12 +48,19 @@ namespace FinalProjectV1
         const int skeletonCount = 6;
         Skeleton[] allSkeleton = new Skeleton[skeletonCount];
 
+
+        DispatcherTimer t = new DispatcherTimer();
+        // startTime
+        // endTime
+
         #endregion
 
 
         public MainWindow()
         {
             InitializeComponent();
+            t.Interval = TimeSpan.FromMilliseconds(30000);
+            t.Tick += new EventHandler(dis_help);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -91,6 +106,7 @@ namespace FinalProjectV1
             }
 
             Skeleton first = getFirstSke(e);
+            initialPage.Visibility = Visibility.Visible;
 
             
         }
@@ -142,5 +158,64 @@ namespace FinalProjectV1
             }
         }
 
+        private void c1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void startHourPlus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void startHourMin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void startMinPlus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void startMinMin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void endHourPlus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void endHourMin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void endMinPlus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void endMinMin_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void c2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
+        //30 second no action event handler, we also have a separate page for this special help page, but it will be same as the first time user guide page
+        private void dis_help(object sender, EventArgs e)
+        {
+            DispatcherTimer at = (DispatcherTimer)sender;
+            at.Stop();
+        }
     }
 }
