@@ -1,4 +1,17 @@
-﻿using System;
+﻿/* the sequence:
+ * 1. initialPage which contains the basic gesture help
+ * 2. intitalTimeSelection which sets the start time and the end time 
+ * 3. beforeStart which display the time until OH and offer change time method
+ * 4. OHstarted which is the main challenge of this project, display many things
+ * 5. ended which (suggestions)
+ * 
+ * 2.1.stSelection which allow use to select start time
+ * 2.2.etSelection which allow use to set end time
+ * 
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

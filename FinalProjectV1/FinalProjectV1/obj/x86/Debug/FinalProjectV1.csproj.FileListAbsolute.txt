@@ -16,3 +16,5 @@ C:\Users\chenkai Gao\Documents\Visual Studio 2010\Projects\FinalProjectV1\FinalP
 C:\Users\chenkai Gao\Documents\Visual Studio 2010\Projects\FinalProjectV1\FinalProjectV1\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\chenkai Gao\Documents\Visual Studio 2010\Projects\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.exe
 C:\Users\chenkai Gao\Documents\Visual Studio 2010\Projects\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.pdb
+C:\UC Berkeley\CS 160\group\f\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.exe
+C:\UC Berkeley\CS 160\group\f\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.pdb

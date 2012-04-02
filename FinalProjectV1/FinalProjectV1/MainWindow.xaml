@@ -4,35 +4,53 @@
         Title="MainWindow" Height="730" Width="1200" Loaded="Window_Loaded" Closing="Window_Closing" xmlns:my="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers">
     <Canvas Height="720" Width="1150" Name="background" HorizontalAlignment="Stretch">
         <my:KinectSensorChooser HorizontalAlignment="Left" Margin="418,144,0,0" Name="kinectSensorChooser1" VerticalAlignment="Top" Width="328" />
+        <!--background should have nothing in it-->
+        <!--every other canvas should have a help button somewhere-->
         
-        <Canvas Height="700" Width="1100" Name="helpScreen" HorizontalAlignment="Stretch">
+        <Canvas Height="700" Width="1150" Name="helpScreen" HorizontalAlignment="Stretch">
+            <!--There are several button in help screen, one is for control***, one is for setting time, one is for during office hour, one is for add 5 minutes-->
             
             
         </Canvas>
 
-        <Canvas Height="700" Width="1100" Name="initialPage" HorizontalAlignment="Stretch">
+        <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch">
+            <!--this screen appears everytime where the program starts, and after 15 seconds or user press continue, the starting canvas will appear-->
+
+            
+        </Canvas>
+
+        <Canvas Height="700" Width="1150" Name="initialTimeSelection" HorizontalAlignment="Stretch">
+            <!--a title-->
+            <TextBox Canvas.Left="300" Canvas.Top="180" Width="120" Height="30" Text="Start Time" FontSize="22" FontWeight="Bold"> </TextBox>
+
+            <TextBox Canvas.Left="300" Canvas.Top="250" Width="120" Height="30" Text="  End Time" FontSize="22" FontWeight="Bold"></TextBox>
+            
+            <!--two buttons next to these two textbox-->
+            
+            
+
+        </Canvas>
+
+        <Canvas Height="700" Width="1150" Name="beforeStart" HorizontalAlignment="Stretch">
+
+            <TextBox Canvas.Left="450" Canvas.Top="140" Width="250" Height="30" Text="Time until office hour" FontSize="22" FontWeight="Bold"></TextBox>
+            
+            <!--one display the time left until the office hour starts, one button to reset the time, (another one to recalibrate**not considered this time**)-->
+            
+            
 
 
         </Canvas>
 
-        <Canvas Height="700" Width="1100" Name="timeSelection" HorizontalAlignment="Stretch">
-
-
-        </Canvas>
-
-        <Canvas Height="700" Width="1100" Name="beforeStart" HorizontalAlignment="Stretch">
-
-
-        </Canvas>
-
-        <Canvas Height="700" Width="1100" Name="started" HorizontalAlignment="Stretch">
-
+        <Canvas Height="700" Width="1150" Name="OHStarted" HorizontalAlignment="Stretch">
+            <!--most complicate one, need color viewer, dynamic arrange the tag, 
+             these can only be set by prof: add 5 mins button, (read help)-->
 
         </Canvas>
 
 
-        <Canvas Height="700" Width="1100" Name="ended" HorizontalAlignment="Stretch">
-
+        <Canvas Height="700" Width="1150" Name="ended" HorizontalAlignment="Stretch">
+            <!--don't know what to put here-->
 
         </Canvas>
     </Canvas>
