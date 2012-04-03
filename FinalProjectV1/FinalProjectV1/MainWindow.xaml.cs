@@ -33,7 +33,9 @@ using System.Windows.Shapes;
 using Microsoft.Kinect;
 using Coding4Fun.Kinect.Wpf;
 using System.Windows.Threading;
-using System.Windows.Threading;
+using System.Collections;
+using System.Media;
+using System.Drawing;
 
 
 namespace FinalProjectV1
@@ -47,13 +49,14 @@ namespace FinalProjectV1
         bool closing = false;
         const int skeletonCount = 6;
         Skeleton[] allSkeleton = new Skeleton[skeletonCount];
-
-
         DispatcherTimer t = new DispatcherTimer();
-        // startTime
-        // endTime
-
+        //a variable keep track which page we are on right now, so that when we switch to the timeouthelp page, we know that when we hit continue, when page should be visible
+        int currentPage;  //define: initialTimeSelection page: 1, beforeOH: 2, 
+        // time representation
+        int sHour, sMin, eHour, eMin;
+        System.Drawing.Point cursorPosition = new System.Drawing.Point(0, 0);//cursor control
         #endregion
+
 
 
         public MainWindow()
@@ -61,6 +64,12 @@ namespace FinalProjectV1
             InitializeComponent();
             t.Interval = TimeSpan.FromMilliseconds(30000);
             t.Tick += new EventHandler(dis_help);
+            currentPage = 0;
+            sHour = 0;
+            sMin = 0;
+            eHour = 0;
+            eMin = 0;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -105,18 +114,35 @@ namespace FinalProjectV1
                 return;
             }
 
-            Skeleton first = getFirstSke(e);
+            Skeleton sk = getFirstSke(e);
             initialPage.Visibility = Visibility.Visible;
-
+            if (sk != null)
+            {
+                MoveMousePosition(sk);
+            }
             
         }
 
+        private void MoveMousePosition(Skeleton sk)
+        {
+            Joint leftHand = sk.Joints[JointType.HandLeft];
+            Joint scaledLeftHand = leftHand.ScaleTo((int)this.Width, (int)this.Height, 0.25f, 0.25f);
 
+            double x = scaledLeftHand.Position.X;
+            double y = scaledLeftHand.Position.Y;
+            System.Windows.Point scnPt = this.PointToScreen(new System.Windows.Point(x, y));
+
+            //Debug.WriteLine("   x=  " + x+ "   y=  " + y);
+            cursorPosition.X = (int)scnPt.X;
+            cursorPosition.Y = (int)scnPt.Y;
+            System.Windows.Forms.Cursor.Position = cursorPosition;
+        }
 
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            closing = true;
+            stopKinect(kinectSensorChooser1.Kinect);
         }
 
 
@@ -160,62 +186,233 @@ namespace FinalProjectV1
 
         private void c1_Click(object sender, RoutedEventArgs e)
         {
-
+            initialPage.Visibility = Visibility.Collapsed;
+            initialTimeSelection.Visibility = Visibility.Visible;
+            currentPage = 1;
+            t.Start(); // start the timer
         }
 
         private void startHourPlus_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (sHour < 23)
+            {
+                ++sHour;
+                //update textbox
+                if (sHour < 10)
+                    startHour.Text = "0" + sHour.ToString();  //don't know if this works
+                else
+                    startHour.Text = sHour.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void startHourMin_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (sHour > 0)
+            {
+                --sHour;
+                //update textbox
+                if (sHour < 10)
+                    startHour.Text = "0" + sHour.ToString();  //don't know if this works
+                else
+                    startHour.Text = sHour.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (sMin < 59)
+            {
+                sMin+=5;
+                //update textbox
+                if (sMin < 10)
+                    startMinute.Text = "0" + sMin.ToString();  //don't know if this works
+                else
+                    startMinute.Text = sMin.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void startMinMin_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (sMin > 0)
+            {
+                sMin -= 5;
+                //update textbox
+                if (sMin < 10)
+                    startMinute.Text = "0" + sMin.ToString();  //don't know if this works
+                else
+                    startMinute.Text = sMin.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void endHourPlus_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (eHour < 23)
+            {
+                ++eHour;
+                //update textbox
+                if (eHour < 10)
+                    endHour.Text = "0" + eHour.ToString();  //don't know if this works
+                else
+                    endHour.Text = eHour.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void endHourMin_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (eHour > 0)
+            {
+                --eHour;
+                //update textbox
+                if (eHour < 10)
+                    endHour.Text = "0" + eHour.ToString();  //don't know if this works
+                else
+                    endHour.Text = eHour.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void endMinPlus_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (eMin < 59)
+            {
+                eMin += 5;
+                //update textbox
+                if (eMin < 10)
+                    endMin.Text = "0" + eMin.ToString();  //don't know if this works
+                else
+                    endMin.Text = eMin.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void endMinMin_Click(object sender, RoutedEventArgs e)
         {
-
+            t.Stop();
+            if (eMin > 0)
+            {
+                eMin -= 5;
+                //update textbox
+                if (eMin < 10)
+                    endMin.Text = "0" + eMin.ToString();  //don't know if this works
+                else
+                    endMin.Text = eMin.ToString();
+            }
+            else
+            {
+                //do some error prevention here
+            }
+            t.Start();
         }
 
         private void c2_Click(object sender, RoutedEventArgs e)
         {
-
+            //check if the time is legal
+            if(checkTime())
+            {
+                t.Stop();
+                initialTimeSelection.Visibility = Visibility.Collapsed;
+                beforeStart.Visibility = Visibility.Visible;
+                currentPage = 2;
+                t.Start();
+            }
+            else
+            {
+                //a notification to user about the wrong time
+            }
         }
 
 
+        private Boolean checkTime()
+        {
+            if (eHour > sHour)
+            {
+                return true;
+            }
+            else if (eHour == sHour)
+            {
+                if (eMin > sMin)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
 
 
         //30 second no action event handler, we also have a separate page for this special help page, but it will be same as the first time user guide page
         private void dis_help(object sender, EventArgs e)
         {
+            //checking current page 
+            if (currentPage == 1)
+            {
+                initialTimeSelection.Visibility = Visibility.Collapsed;
+                helpForTimeout.Visibility = Visibility.Visible;
+            }
+            else if (currentPage == 2)
+            {
+                beforeStart.Visibility = Visibility.Collapsed;
+                helpForTimeout.Visibility = Visibility.Visible;
+            }
             DispatcherTimer at = (DispatcherTimer)sender;
             at.Stop();
+        }
+
+        private void cSpecial_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentPage == 1)
+            {
+                helpForTimeout.Visibility = Visibility.Collapsed;
+                initialTimeSelection.Visibility = Visibility.Visible;
+                t.Start();
+            }
+            else if (currentPage == 2)
+            {
+                helpForTimeout.Visibility = Visibility.Collapsed;
+                beforeStart.Visibility = Visibility.Visible;
+                t.Start();
+            }
+
         }
     }
 }
