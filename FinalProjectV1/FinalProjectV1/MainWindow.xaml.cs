@@ -14,6 +14,8 @@
  * c1: is the continue button at initial first time user guide page
  * c2: is the continue button at new select time page
  * 
+ * ***there is also a logic error, that is when it is before office hour page, do we need to do the 30s counting to pop up the help menu?
+ * 
 */
 
 
@@ -55,6 +57,7 @@ namespace FinalProjectV1
         // time representation
         int sHour, sMin, eHour, eMin;
         System.Drawing.Point cursorPosition = new System.Drawing.Point(0, 0);//cursor control
+        DispatcherTimer startOH = new DispatcherTimer();
         #endregion
 
 
@@ -121,6 +124,45 @@ namespace FinalProjectV1
             {
                 MoveMousePosition(sk);
             }
+
+            if (currentPage == 2)
+            {
+                disTimeBeforeStart.Text = dis_time_before_OH();
+            }
+            else if (currentPage == 3)
+            {
+                disTimeOver.Text = dis_time_left();
+            }
+            
+        }
+
+        private string dis_time_left()
+        {
+            int m = eMin - 1 - DateTime.Now.Minute;
+            int s = 60 - DateTime.Now.Second;
+            int h = 0;
+            if (m < 0)
+                h = eHour - DateTime.Now.Hour - 1;
+            else
+                h = eHour - DateTime.Now.Hour;
+
+            
+
+            return h.ToString() + ":" + Math.Abs(m).ToString() + ":" + s.ToString();
+        }
+
+
+        private string dis_time_before_OH()
+        {
+            int m = sMin-1-DateTime.Now.Minute;
+            int s = 60 - DateTime.Now.Second;
+            int h=0;
+            if (m < 0)
+                h = sHour - DateTime.Now.Hour - 1;
+            else
+                h = sHour - DateTime.Now.Hour;
+
+            return h.ToString() + ":" + Math.Abs(m).ToString() + ":" + s.ToString();
             
         }
 
@@ -354,7 +396,10 @@ namespace FinalProjectV1
                 initialTimeSelection.Visibility = Visibility.Collapsed;
                 beforeStart.Visibility = Visibility.Visible;
                 currentPage = 2;
-                t.Start();
+                startOH.Interval = TimeSpan.FromMilliseconds(calTime());
+                startOH.Tick += new EventHandler(startedOH);
+                startOH.Start();
+                //t.Start();
             }
             else
             {
@@ -362,6 +407,18 @@ namespace FinalProjectV1
             }
         }
 
+        private int calTime()
+        {
+            int m = sMin - 1 - DateTime.Now.Minute;
+            int s = 60 - DateTime.Now.Second;
+            int h = 0;
+            if (m < 0)
+                h = sHour - DateTime.Now.Hour - 1;
+            else
+                h = sHour - DateTime.Now.Hour;
+
+            return (h * 3600 + Math.Abs(m) * 60 + s) * 1000;
+        }
 
         private Boolean checkTime()
         {
@@ -399,6 +456,19 @@ namespace FinalProjectV1
             at.Stop();
         }
 
+        //
+        private void startedOH(object sender, EventArgs e)
+        {
+            DispatcherTimer at = (DispatcherTimer)sender;
+            at.Stop();
+            t.Stop();
+            beforeStart.Visibility = Visibility.Collapsed;
+            OHStarted.Visibility = Visibility.Visible;
+            currentPage = 3;
+        }
+            
+
+
         private void cSpecial_Click(object sender, RoutedEventArgs e)
         {
             if (currentPage == 1)
@@ -414,6 +484,15 @@ namespace FinalProjectV1
                 t.Start();
             }
 
+        }
+
+        private void ct_Click(object sender, RoutedEventArgs e)
+        {
+            t.Stop();
+            beforeStart.Visibility = Visibility.Collapsed;
+            initialTimeSelection.Visibility = Visibility.Visible;
+            currentPage = 1;
+            t.Start();
         }
     }
 }

@@ -122,14 +122,41 @@
             <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
             <TextBox Canvas.Left="450" Canvas.Top="140" Width="250" Height="30" Text="Time until office hour" FontSize="22" FontWeight="Bold"></TextBox>
             
-            <!--one display the time left until the office hour starts, one button to reset the time, (another one to recalibrate**not considered this time**)-->
+            <TextBox Canvas.Left="475" Canvas.Top="180" Width="200" Height="30" FontSize="20" Name="disTimeBeforeStart"></TextBox>
             
+            <Button Canvas.Left="475" Canvas.Top="230" Width="200" Height="60" Content="Change time" Name="ct" FontSize="22" Click="ct_Click"></Button>
+            <!--one display the time left until the office hour starts, one button to reset the time, (another one to recalibrate**not considered this time**)-->
+            <!--a help button-->
         </Canvas>
 
         <Canvas Height="700" Width="1150" Name="OHStarted" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--most complicate one, need color viewer, dynamic arrange the tag, 
              these can only be set by prof: add 5 mins button, (read help)-->
+            <my:KinectColorViewer Canvas.Left="400" Canvas.Bottom="7" Name="kinectColorViewer1" Height="240" Width="320" Kinect="{Binding ElementName=kinectSensorChooser1, Path=Kinect}" />
+
+            <RichTextBox Height="220" Width="250" Canvas.Left="10" Canvas.Bottom="10">
+                <FlowDocument>
+                    <Paragraph FontSize="22">
+                        To students:
+                        <LineBreak/>
+                        Raise right hand to 
+                        <LineBreak/>
+                        aske a question.
+                        <LineBreak/>
+                        <LineBreak/>
+                        Raise left hand to
+                        <LineBreak/>
+                        indicate question has
+                        <LineBreak/>
+                        been answered.
+                    </Paragraph>
+                </FlowDocument>
+
+            </RichTextBox>
             
+            <TextBox Canvas.Right="300" Canvas.Bottom="200" Width="120" Height="50" Text="Time Left:" FontSize="22"></TextBox>
+            <TextBox Canvas.Right="60" Canvas.Bottom="200" Width="220" Height="50" FontSize="20" Name="disTimeOver"></TextBox>
+
         </Canvas>
 
 
