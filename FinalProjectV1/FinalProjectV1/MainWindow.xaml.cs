@@ -75,6 +75,7 @@ namespace FinalProjectV1
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             kinectSensorChooser1.KinectSensorChanged += new DependencyPropertyChangedEventHandler(kinectSensorChooser1_KinectSensorChanged);
+            //initialPage.Visibility = Visibility.Visible;
         }
 
         void kinectSensorChooser1_KinectSensorChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -82,7 +83,7 @@ namespace FinalProjectV1
             KinectSensor oldSensor = (KinectSensor)e.OldValue;
             stopKinect(oldSensor);
             KinectSensor newSensor = (KinectSensor)e.NewValue;
-
+            initialPage.Visibility = Visibility.Visible;
             newSensor.DepthStream.Enable(DepthImageFormat.Resolution640x480Fps30);
             newSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
             var parameters = new TransformSmoothParameters
@@ -115,7 +116,7 @@ namespace FinalProjectV1
             }
 
             Skeleton sk = getFirstSke(e);
-            initialPage.Visibility = Visibility.Visible;
+            //initialPage.Visibility = Visibility.Visible;
             if (sk != null)
             {
                 MoveMousePosition(sk);
