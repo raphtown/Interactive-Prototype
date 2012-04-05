@@ -102,3 +102,29 @@ C:\UC Berkeley\CS 160\group\f\KinectWpfViewers\obj\Debug\GenerateResource.read.1
 C:\UC Berkeley\CS 160\group\f\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
 C:\UC Berkeley\CS 160\group\f\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
 C:\UC Berkeley\CS 160\group\f\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectSettings.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectSensorChooser.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectAudioViewer.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectDepthViewer.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectColorViewer.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectSettings.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectSensorChooser.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectAudioViewer.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectDepthViewer.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectColorViewer.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectDiagnosticViewer.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\KinectSkeletonViewer.baml
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.g.resources
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.Properties.Resources.resources
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\Sevensevens\Interactive-Prototype\KinectWpfViewers\obj\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb

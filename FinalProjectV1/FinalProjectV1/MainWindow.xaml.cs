@@ -60,7 +60,7 @@ namespace FinalProjectV1
         DispatcherTimer startOH = new DispatcherTimer();
         #endregion
 
-
+        //
 
         public MainWindow()
         {
@@ -405,6 +405,9 @@ namespace FinalProjectV1
             {
                 //a notification to user about the wrong time
             }
+        }
+
+        private int finished() { 
         }
 
         private int calTime()

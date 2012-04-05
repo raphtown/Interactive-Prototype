@@ -33,3 +33,20 @@ C:\UC Berkeley\CS 160\group\f\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalP
 C:\UC Berkeley\CS 160\group\f\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.Properties.Resources.resources
 C:\UC Berkeley\CS 160\group\f\FinalProjectV1\FinalProjectV1\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\UC Berkeley\CS 160\group\f\FinalProjectV1\FinalProjectV1\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.exe
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.pdb
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\FinalProjectV1.exe
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\FinalProjectV1.pdb
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\Microsoft.Expression.Drawing.dll
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\Coding4Fun.Kinect.Wpf.pdb
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\MainWindow.baml
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\App.g.cs
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1_MarkupCompile.cache
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.g.resources
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\FinalProjectV1.Properties.Resources.resources
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Sevensevens\Interactive-Prototype\FinalProjectV1\FinalProjectV1\obj\x86\Debug\GenerateResource.write.1.tlog
