@@ -286,7 +286,7 @@ namespace FinalProjectV1
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            sMin = sMin + 1;
+            sMin = sMin + 5;
             startMin.Text = (sMin % 60).ToString();
             eMin = sMin;
             endMin.Text = startMin.Text;
@@ -345,16 +345,16 @@ namespace FinalProjectV1
             if(checkTime())
             {
                int remaing = calTime();
-               //if (remaing < 0) MessageBox.Show("Past time selction!");
-               //else
-               //{
+               if (remaing < 0) MessageBox.Show("Past time selction!");
+               else
+               {
                     initialTimeSelection.Visibility = Visibility.Collapsed;
                     beforeStart.Visibility = Visibility.Visible;
                     currentPage = 2;
                     startOH.Interval = TimeSpan.FromMilliseconds(calTime());
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
-               //}
+               }
                 t.Start();
             }
             else
