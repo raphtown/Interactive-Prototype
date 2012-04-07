@@ -56,9 +56,10 @@ namespace FinalProjectV1
         int currentPage;  //define: initialTimeSelection page: 1, beforeOH: 2, 
         // time representation
         int sHour, sMin, eHour, eMin;
-        string timeB4Oh, timeLeft;
         System.Drawing.Point cursorPosition = new System.Drawing.Point(0, 0);//cursor control
         DispatcherTimer startOH = new DispatcherTimer();
+        private Button currentFocus = null;
+        ArrayList allRecognizers = new ArrayList();
         #endregion
 
         //
@@ -73,8 +74,7 @@ namespace FinalProjectV1
             sMin = int.Parse(startMin.Text);
             eHour = int.Parse(endHour.Text);
             eMin = int.Parse(endMin.Text);
-            
-
+            allRecognizers.Add(new RightHandPushRecognizer());
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -138,17 +138,44 @@ namespace FinalProjectV1
             
         }
 
+        private void setCurrentFocus(Button btn)
+        {
+            currentFocus = btn;
+            if (btn != null) 
+            {
+                Keyboard.Focus(btn);
+            }
+        }
+
+        private void RecognizeGesture(Dictionary<JointType, Point3D> normalizedJointData)
+        {
+            foreach (IGestureRecognizer recognizer in allRecognizers)
+            {
+                recognizer.UpdateJointData(normalizedJointData);
+                if (recognizer.Recognized)
+                {
+                    if (recognizer.name == "RightHandPush" && currentFocus != null)
+                    {
+                        SystemSounds.Beep.Play();
+                        currentFocus.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    }
+                }
+            }
+        }
+
         private string dis_time_left()
         {
             int m = eMin - 1 - DateTime.Now.Minute;
             int s = 60 - DateTime.Now.Second;
             int h = 0;
             if (m < 0)
+            {
                 h = eHour - DateTime.Now.Hour - 1;
+                m = m + 60;
+            }
             else
                 h = eHour - DateTime.Now.Hour;
-
-            return h.ToString() + ":" + Math.Abs(m).ToString() + ":" + s.ToString();
+            return h.ToString() + ":" + m.ToString() + ":" + s.ToString();
         }
 
 
@@ -162,7 +189,7 @@ namespace FinalProjectV1
             else
                 h = sHour - DateTime.Now.Hour;
 
-            return h.ToString() + ":" + Math.Abs(m).ToString() + ":" + s.ToString();
+            return h.ToString() + ":" + m.ToString() + ":" + s.ToString();
             
         }
 
@@ -259,7 +286,7 @@ namespace FinalProjectV1
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            sMin = sMin + 5;
+            sMin = sMin + 1;
             startMin.Text = (sMin % 60).ToString();
             eMin = sMin;
             endMin.Text = startMin.Text;
@@ -270,7 +297,7 @@ namespace FinalProjectV1
         {
             t.Stop();
             sMin = sMin - 5;
-            if (sMin < 0) eMin = eMin + 60;
+            if (sMin < 0) sMin = sMin + 60;
             startMin.Text = (sMin % 60).ToString();
             eMin = sMin;
             endMin.Text = startMin.Text;
@@ -318,24 +345,53 @@ namespace FinalProjectV1
             if(checkTime())
             {
                int remaing = calTime();
-                if (remaing < 0) MessageBox.Show("Past time selction!");
-                else
-                {
+               //if (remaing < 0) MessageBox.Show("Past time selction!");
+               //else
+               //{
                     initialTimeSelection.Visibility = Visibility.Collapsed;
                     beforeStart.Visibility = Visibility.Visible;
                     currentPage = 2;
-                    timeB4Oh = dis_time_before_OH();
                     startOH.Interval = TimeSpan.FromMilliseconds(calTime());
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
-                    
-                }
+               //}
                 t.Start();
             }
             else
             {
                 MessageBox.Show("Wrong time selection!");
             }
+        }
+
+        private void plus5_Click(object sender, RoutedEventArgs e)
+        {
+            startOH.Stop();
+            eMin = eMin + 5;
+            if (eMin > 55) 
+            {
+                eMin = eMin % 60;
+                eHour++;
+                
+            }
+            startOH.Interval = TimeSpan.FromMilliseconds(calTime());
+            startOH.Tick += new EventHandler(startedOH);
+            startOH.Start();
+        }
+
+        private void min5_Click(object sender, RoutedEventArgs e)
+        {
+            startOH.Stop();
+            eMin = eMin - 5;
+            if (eMin < 0)
+            {
+                eMin = eMin + 60;
+                eMin = eMin % 60;
+                eHour--;
+
+            }
+            startOH.Interval = TimeSpan.FromMilliseconds(calTime());
+            startOH.Tick += new EventHandler(startedOH);
+            startOH.Start();
         }
 
         private int calTime()
@@ -350,7 +406,7 @@ namespace FinalProjectV1
             }
             else
                 h = sHour - DateTime.Now.Hour;
-            return (h * 3600 + Math.Abs(m) * 60 + s) * 1000;
+            return (h * 3600 + m * 60 + s) * 1000;
         }
 
         private Boolean checkTime()
