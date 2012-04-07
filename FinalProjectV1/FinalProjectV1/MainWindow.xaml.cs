@@ -56,6 +56,7 @@ namespace FinalProjectV1
         int currentPage;  //define: initialTimeSelection page: 1, beforeOH: 2, 
         // time representation
         int sHour, sMin, eHour, eMin;
+        string timeB4Oh, timeLeft;
         System.Drawing.Point cursorPosition = new System.Drawing.Point(0, 0);//cursor control
         DispatcherTimer startOH = new DispatcherTimer();
         #endregion
@@ -68,10 +69,11 @@ namespace FinalProjectV1
             t.Interval = TimeSpan.FromMilliseconds(30000);
             t.Tick += new EventHandler(dis_help);
             currentPage = 0;
-            sHour = 0;
-            sMin = 0;
-            eHour = 0;
-            eMin = 0;
+            sHour = int.Parse(startHour.Text);
+            sMin = int.Parse(startMin.Text);
+            eHour = int.Parse(endHour.Text);
+            eMin = int.Parse(endMin.Text);
+            
 
         }
 
@@ -145,8 +147,6 @@ namespace FinalProjectV1
                 h = eHour - DateTime.Now.Hour - 1;
             else
                 h = eHour - DateTime.Now.Hour;
-
-            
 
             return h.ToString() + ":" + Math.Abs(m).ToString() + ":" + s.ToString();
         }
@@ -238,176 +238,104 @@ namespace FinalProjectV1
         private void startHourPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (sHour < 23)
-            {
-                ++sHour;
-                //update textbox
-                if (sHour < 10)
-                    startHour.Text = "0" + sHour.ToString();  //don't know if this works
-                else
-                    startHour.Text = sHour.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            //update textbox
+            startHour.Text = ((++sHour) % 24).ToString();
+            eHour = sHour;
+            endHour.Text = startHour.Text;
             t.Start();
         }
 
         private void startHourMin_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (sHour > 0)
-            {
-                --sHour;
-                //update textbox
-                if (sHour < 10)
-                    startHour.Text = "0" + sHour.ToString();  //don't know if this works
-                else
-                    startHour.Text = sHour.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            --sHour; 
+            if (sHour < 0) sHour = sHour + 24;
+            startHour.Text = (sHour % 24).ToString();
+            eHour = sHour;
+            endHour.Text = startHour.Text;
             t.Start();
         }
 
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (sMin < 59)
-            {
-                sMin+=5;
-                //update textbox
-                if (sMin < 10)
-                    startMinute.Text = "0" + sMin.ToString();  //don't know if this works
-                else
-                    startMinute.Text = sMin.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            sMin = sMin + 5;
+            startMin.Text = (sMin % 60).ToString();
+            eMin = sMin;
+            endMin.Text = startMin.Text;
             t.Start();
         }
 
         private void startMinMin_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (sMin > 0)
-            {
-                sMin -= 5;
-                //update textbox
-                if (sMin < 10)
-                    startMinute.Text = "0" + sMin.ToString();  //don't know if this works
-                else
-                    startMinute.Text = sMin.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            sMin = sMin - 5;
+            if (sMin < 0) eMin = eMin + 60;
+            startMin.Text = (sMin % 60).ToString();
+            eMin = sMin;
+            endMin.Text = startMin.Text;
             t.Start();
         }
 
         private void endHourPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (eHour < 23)
-            {
-                ++eHour;
-                //update textbox
-                if (eHour < 10)
-                    endHour.Text = "0" + eHour.ToString();  //don't know if this works
-                else
-                    endHour.Text = eHour.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            //update textbox
+            endHour.Text = (++eHour % 24).ToString();
             t.Start();
         }
 
         private void endHourMin_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (eHour > 0)
-            {
-                --eHour;
-                //update textbox
-                if (eHour < 10)
-                    endHour.Text = "0" + eHour.ToString();  //don't know if this works
-                else
-                    endHour.Text = eHour.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            --eHour;
+            if (eHour < 0) eHour = eHour + 24;
+            endHour.Text = (eHour % 24).ToString();
             t.Start();
         }
 
         private void endMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (eMin < 59)
-            {
-                eMin += 5;
-                //update textbox
-                if (eMin < 10)
-                    endMin.Text = "0" + eMin.ToString();  //don't know if this works
-                else
-                    endMin.Text = eMin.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            eMin = eMin + 5;
+            endMin.Text = ((eMin) % 60).ToString();
             t.Start();
         }
 
         private void endMinMin_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            if (eMin > 0)
-            {
-                eMin -= 5;
-                //update textbox
-                if (eMin < 10)
-                    endMin.Text = "0" + eMin.ToString();  //don't know if this works
-                else
-                    endMin.Text = eMin.ToString();
-            }
-            else
-            {
-                //do some error prevention here
-            }
+            eMin = eMin - 5;
+            if (eMin < 0) eMin = eMin + 60;
+            endMin.Text = (eMin % 60).ToString();
             t.Start();
         }
 
         private void c2_Click(object sender, RoutedEventArgs e)
         {
+            t.Stop();
             //check if the time is legal
             if(checkTime())
             {
-                t.Stop();
-                initialTimeSelection.Visibility = Visibility.Collapsed;
-                beforeStart.Visibility = Visibility.Visible;
-                currentPage = 2;
-                startOH.Interval = TimeSpan.FromMilliseconds(calTime());
-                startOH.Tick += new EventHandler(startedOH);
-                startOH.Start();
-                //t.Start();
+               int remaing = calTime();
+                if (remaing < 0) MessageBox.Show("Past time selction!");
+                else
+                {
+                    initialTimeSelection.Visibility = Visibility.Collapsed;
+                    beforeStart.Visibility = Visibility.Visible;
+                    currentPage = 2;
+                    timeB4Oh = dis_time_before_OH();
+                    startOH.Interval = TimeSpan.FromMilliseconds(calTime());
+                    startOH.Tick += new EventHandler(startedOH);
+                    startOH.Start();
+                    
+                }
+                t.Start();
             }
             else
             {
-                //a notification to user about the wrong time
+                MessageBox.Show("Wrong time selection!");
             }
-        }
-
-        private int finished() { 
         }
 
         private int calTime()
@@ -416,10 +344,12 @@ namespace FinalProjectV1
             int s = 60 - DateTime.Now.Second;
             int h = 0;
             if (m < 0)
+            {
+                m = m + 60;
                 h = sHour - DateTime.Now.Hour - 1;
+            }
             else
                 h = sHour - DateTime.Now.Hour;
-
             return (h * 3600 + Math.Abs(m) * 60 + s) * 1000;
         }
 

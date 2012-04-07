@@ -9,12 +9,12 @@
         
         <Canvas Height="700" Width="1150" Name="helpForTimeout" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--There are several button in help screen, one is for control***, one is for setting time, one is for during office hour, one is for add 5 minutes-->
-            <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" ></Label>
+            
+            <Label Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Content="First-time User Guide" FontSize="32" ></Label>
 
-            <TextBox Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Text="First-time User Guide" FontSize="32" TextAlignment="Center"></TextBox>
-
-            <TextBox Height="50" Width="200" Canvas.Left="100" Canvas.Top="150" Text="Moving Cursor" FontSize="28" TextAlignment="Center"></TextBox>
-            <TextBox Height="50" Width="200" Canvas.Left="800" Canvas.Top="150" Text="Selecting" FontSize="28" TextAlignment="Center"></TextBox>
+            <Label Height="50" Width="250" Canvas.Left="100" Canvas.Top="150" Content="Moving Cursor" FontSize="28" Name="mv_cursor"></Label>
+            <Label Height="50" Width="250" Canvas.Left="800" Canvas.Top="150" Content="Selecting" FontSize="28" Name="selecting"></Label>
 
             <RichTextBox Height="120" Width="210" Canvas.Left="100" Canvas.Top="210">
                 <FlowDocument>
@@ -24,9 +24,7 @@
                         to control cursor
                     </Paragraph>
                 </FlowDocument>
-
             </RichTextBox>
-
             <RichTextBox Height="120" Width="210" Canvas.Left="800" Canvas.Top="210">
                 <FlowDocument>
                     <Paragraph FontSize="24">
@@ -39,6 +37,7 @@
                 </FlowDocument>
 
             </RichTextBox>
+           
 
             <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="100" Height="50" Content="Continue" Click="cSpecial_Click"  FontSize="18"></Button>
         </Canvas>
@@ -46,12 +45,12 @@
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--this screen appears everytime where the program starts, and after 15 seconds or user press continue, the starting canvas will appear-->
             <!--this is a gesture help screen too-->
-            <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" ></Label>
             
-            <TextBox Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Text="First-time User Guide" FontSize="32" TextAlignment="Center"></TextBox>
+            <Label Height="50" Width="350" Canvas.Left="370" Canvas.Top="90" Content="First-time User Guide" FontSize="32" ></Label>
 
-            <TextBox Height="50" Width="200" Canvas.Left="100" Canvas.Top="150" Text="Moving Cursor" FontSize="28" TextAlignment="Center"></TextBox>
-            <TextBox Height="50" Width="200" Canvas.Left="800" Canvas.Top="150" Text="Selecting" FontSize="28" TextAlignment="Center"></TextBox>
+            <Label Height="50" Width="250" Canvas.Left="100" Canvas.Top="150" Content="Moving Cursor" FontSize="28" ></Label>
+            <Label Height="50" Width="250" Canvas.Left="800" Canvas.Top="150" Content="Selecting" FontSize="28"></Label>
 
             <RichTextBox Height="120" Width="210" Canvas.Left="100" Canvas.Top="210">
                 <FlowDocument>
@@ -61,10 +60,8 @@
                           to control cursor
                     </Paragraph>
                 </FlowDocument>
-                
             </RichTextBox>
-
-            <RichTextBox Height="120" Width="210" Canvas.Left="800" Canvas.Top="210">
+                <RichTextBox Height="120" Width="210" Canvas.Left="800" Canvas.Top="210">
                 <FlowDocument>
                     <Paragraph FontSize="24">
                          With the cursor
@@ -86,16 +83,16 @@
             <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
 
 
-            <TextBox Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Text="Select Time" FontSize="32" TextAlignment="Center"></TextBox>
+            <Label Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Content="Select Time" FontSize="32" ></Label>
             
             <TextBox Canvas.Left="30" Canvas.Top="150" Width="120" Height="30" Text="Start Time" FontSize="22" FontWeight="Bold"> </TextBox>
             <TextBox Canvas.Left="50" Canvas.Top="190" Width="70" Height="40" Text="Hour" FontSize="24" ></TextBox>
-            <TextBox Canvas.Left="270" Canvas.Top="190" Width="80" Height="50" Text="00" FontSize="24" TextAlignment="Center" Name="startHour"></TextBox>
+            <TextBox Canvas.Left="270" Canvas.Top="190" Width="80" Height="50" Text="12" FontSize="24" TextAlignment="Center" Name="startHour"></TextBox>
             <Button Name="startHourPlus" Canvas.Left="160" Canvas.Top="190" Width="80" Height="50" Click="startHourPlus_Click" Content="+" FontSize="26"></Button>
             <Button Name="startHourMin" Canvas.Left="380" Canvas.Top="190" Width="80" Height="50" Click="startHourMin_Click" Content="-" FontSize="26"></Button>
 
             <TextBox Canvas.Left="700" Canvas.Top="190" Width="90" Height="40" Text="Minute" FontSize="24" ></TextBox>
-            <TextBox Canvas.Left="900" Canvas.Top="190" Width="80" Height="50" Text="00" FontSize="24" TextAlignment="Center" Name="startMinute"></TextBox>
+            <TextBox Canvas.Left="900" Canvas.Top="190" Width="80" Height="50" Text="15" FontSize="24" TextAlignment="Center" Name="startMin"></TextBox>
             <Button Name="startMinPlus" Canvas.Left="800" Canvas.Top="190" Width="80" Height="50" Click="startMinPlus_Click" Content="+5" FontSize="26"></Button>
             <Button Name="startMinMin" Canvas.Left="1000" Canvas.Top="190" Width="80" Height="50" Click="startMinMin_Click" Content="-5" FontSize="26"></Button>
 
