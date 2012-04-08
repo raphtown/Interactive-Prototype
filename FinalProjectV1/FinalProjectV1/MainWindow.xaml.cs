@@ -16,6 +16,12 @@
  * 
  * ***there is also a logic error, that is when it is before office hour page, do we need to do the 30s counting to pop up the help menu?
  * 
+ * Comment from Ben: Seriously magic numbers?  It's bad enough when you use them for numeric
+ * values, but when you use numbers for symbolic values it's awful.
+ * Seriously, it's bad form to use magic numbers, even in your own personal projects.  If you use them in a 
+ * project, abandon it then come back to it later you will have to relearn what those numbers mean.  If 
+ * instead you just declare your constants at the beginning and only use those constants you will never
+ * have to remember the meaning of the number.
 */
 
 
@@ -436,11 +442,11 @@ namespace FinalProjectV1
                 initialTimeSelection.Visibility = Visibility.Collapsed;
                 helpForTimeout.Visibility = Visibility.Visible;
             }
-            else if (currentPage == 2)
+           /* else if (currentPage == 2)
             {
                 beforeStart.Visibility = Visibility.Collapsed;
                 helpForTimeout.Visibility = Visibility.Visible;
-            }
+            }*/
             DispatcherTimer at = (DispatcherTimer)sender;
             at.Stop();
         }
