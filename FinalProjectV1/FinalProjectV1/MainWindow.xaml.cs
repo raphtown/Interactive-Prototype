@@ -368,7 +368,7 @@ namespace FinalProjectV1
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
                }
-                t.Start();
+               //t.Start();
             }
             else
             {
