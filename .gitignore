@@ -1,1 +1,4 @@
+*.lref
+KinectWpfViewers/bin
+KinectWpfViewers/obj
 *.cache
