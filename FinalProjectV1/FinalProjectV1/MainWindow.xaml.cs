@@ -195,7 +195,10 @@ namespace FinalProjectV1
             int s = 60 - DateTime.Now.Second;
             int h=0;
             if (m < 0)
+            {
                 h = sHour - DateTime.Now.Hour - 1;
+                m = m + 60;
+            }
             else
                 h = sHour - DateTime.Now.Hour;
 
@@ -277,8 +280,8 @@ namespace FinalProjectV1
             t.Stop();
             //update textbox
             startHour.Text = ((++sHour) % 24).ToString();
-            eHour = sHour;
-            endHour.Text = startHour.Text;
+            eHour = sHour + 1;
+            endHour.Text = (eHour % 24).ToString();
             t.Start();
         }
 
@@ -288,8 +291,8 @@ namespace FinalProjectV1
             --sHour; 
             if (sHour < 0) sHour = sHour + 24;
             startHour.Text = (sHour % 24).ToString();
-            eHour = sHour;
-            endHour.Text = startHour.Text;
+            eHour = sHour + 1;
+            endHour.Text = (eHour % 24).ToString();
             t.Start();
         }
 
