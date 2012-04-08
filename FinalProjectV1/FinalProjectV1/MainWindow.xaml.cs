@@ -379,10 +379,22 @@ namespace FinalProjectV1
         private void plus5_Click(object sender, RoutedEventArgs e)
         {
             eMin = eMin + 5;
-            if (eMin > 55) 
+            if (eMin >= 55) 
             {
                 eMin = eMin % 60;
                 eHour++;
+            }
+        }
+
+        private void min5_Click(object sender, RoutedEventArgs e)
+        {
+            
+            eMin = eMin - 5;
+            if (eMin < 0)
+            {
+                --eHour;
+                if ((eHour - DateTime.Now.Hour) < 0) MessageBox.Show("No enought time for subtraction!");
+                else eMin = eMin + 60;
             }
         }
 
