@@ -1,4 +1,2 @@
-*.lref
-KinectWpfViewers/bin
-KinectWpfViewers/obj
-*.cache
+bin/
+obj/x86/
