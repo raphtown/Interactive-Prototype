@@ -160,7 +160,7 @@
                           
             <TextBox Canvas.Right="300" Canvas.Bottom="200" Width="120" Height="50" Text="Time Left:" FontSize="22"></TextBox>
             <TextBox Canvas.Right="60" Canvas.Bottom="200" Width="220" Height="50" FontSize="20" Name="disTimeOver" ></TextBox>                           
-            <Button Canvas.Right="100" Canvas.Bottom="120" Width="250" Height="50" Content="+5" Name="plus5Btn" Click="min5_Click" FontSize="34"></Button>
+            <Button Canvas.Right="100" Canvas.Bottom="120" Width="250" Height="50" Content="+5" Name="plus5Btn" Click="plus5_Click" FontSize="34"></Button>
         </Canvas>                                                    
 
 

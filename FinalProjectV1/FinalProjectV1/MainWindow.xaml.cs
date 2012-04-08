@@ -299,7 +299,7 @@ namespace FinalProjectV1
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            sMin = sMin + 5;
+            sMin = sMin + 1;
             startMin.Text = (sMin % 60).ToString();
             eMin = sMin;
             endMin.Text = startMin.Text;
@@ -378,33 +378,12 @@ namespace FinalProjectV1
 
         private void plus5_Click(object sender, RoutedEventArgs e)
         {
-            startOH.Stop();
             eMin = eMin + 5;
             if (eMin > 55) 
             {
                 eMin = eMin % 60;
                 eHour++;
-                
             }
-            startOH.Interval = TimeSpan.FromMilliseconds(calTime());
-            startOH.Tick += new EventHandler(startedOH);
-            startOH.Start();
-        }
-
-        private void min5_Click(object sender, RoutedEventArgs e)
-        {
-            startOH.Stop();
-            eMin = eMin - 5;
-            if (eMin < 0)
-            {
-                eMin = eMin + 60;
-                eMin = eMin % 60;
-                eHour--;
-
-            }
-            startOH.Interval = TimeSpan.FromMilliseconds(calTime());
-            startOH.Tick += new EventHandler(startedOH);
-            startOH.Start();
         }
 
         private int calTime()
