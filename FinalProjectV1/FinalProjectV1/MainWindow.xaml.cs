@@ -134,6 +134,7 @@ namespace FinalProjectV1
             //initialPage.Visibility = Visibility.Visible;
             if (sk != null)
             {
+                Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
                 MoveMousePosition(sk);
             }
 
@@ -146,6 +147,34 @@ namespace FinalProjectV1
                 disTimeOver.Text = dis_time_left();
             }
             
+        }
+
+        private ImageSource getHeadshot(Skeleton sk, ColorImageFrame colorFrame)
+        {
+            Joint head = sk.Joints[JointType.Head];
+            Joint scaledHead = head.ScaleTo(320, 240, 0.25f, 0.25f);
+
+            int x = (int)scaledHead.Position.X;
+            int y = (int)scaledHead.Position.Y;
+
+            if (colorFrame == null)
+            {
+                return null;
+            }
+
+            byte[] pixels = new byte[colorFrame.PixelDataLength];
+            colorFrame.CopyPixelDataTo(pixels);
+
+            int stride = colorFrame.Width * 4;
+
+            BitmapSource frame = BitmapSource.Create(colorFrame.Width, colorFrame.Height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
+            if (x - 32 < 0 || y - 32 < 0 || x - 32 > 320-65 || y - 32 > 240-65)
+            {
+                CroppedBitmap pic = new CroppedBitmap(frame, new Int32Rect(x-32, y-32, 65, 65));
+
+                return pic;
+            }
+            return null;
         }
 
         private void setCurrentFocus(Button btn)
