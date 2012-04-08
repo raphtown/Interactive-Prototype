@@ -9,7 +9,7 @@
         
         <Canvas Height="700" Width="1150" Name="helpForTimeout" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--There are several button in help screen, one is for control***, one is for setting time, one is for during office hour, one is for add 5 minutes-->
-            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" ></Label>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
             
             <Label Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Content="First-time User Guide" FontSize="32" ></Label>
 
@@ -45,9 +45,9 @@
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--this screen appears everytime where the program starts, and after 15 seconds or user press continue, the starting canvas will appear-->
             <!--this is a gesture help screen too-->
-            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" ></Label>
-            
-            <Label Height="50" Width="350" Canvas.Left="370" Canvas.Top="90" Content="First-time User Guide" FontSize="32" ></Label>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+
+            <Label Height="50" Width="350" Canvas.Left="370" Canvas.Top="90" Content="First-time User Guide" FontSize="32" HorizontalContentAlignment="Center"></Label>
 
             <Label Height="50" Width="250" Canvas.Left="100" Canvas.Top="150" Content="Moving Cursor" FontSize="28" ></Label>
             <Label Height="50" Width="250" Canvas.Left="800" Canvas.Top="150" Content="Selecting" FontSize="28"></Label>
@@ -80,30 +80,30 @@
 
         <Canvas Height="700" Width="1150" Name="initialTimeSelection" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--a title ( we have changed this to a single page time selection)-->
-            <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
 
 
-            <Label Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Content="Select Time" FontSize="32" ></Label>
-            
-            <TextBox Canvas.Left="30" Canvas.Top="140" Width="250" Height="50" Text="Start Time" FontSize="34" FontWeight="Bold"> </TextBox>
-            <TextBox Canvas.Left="50" Canvas.Top="190" Width="70" Height="40" Text="Hour" FontSize="24" ></TextBox>
+            <Label Height="50" Width="330" Canvas.Left="380" Canvas.Top="90" Content="Select Time" FontSize="32" HorizontalContentAlignment="Center"></Label>
+
+            <Label Canvas.Left="30" Canvas.Top="140" Width="250" Height="50" Content="Start Time" FontSize="34" FontWeight="Bold"></Label>
+            <Label Canvas.Left="50" Canvas.Top="190" Width="70" Height="40" Content="Hour" FontSize="24" ></Label>
             <TextBox Canvas.Left="270" Canvas.Top="190" Width="80" Height="50" Text="12" FontSize="24" TextAlignment="Center" Name="startHour"></TextBox>
             <Button Name="startHourPlus" Canvas.Left="160" Canvas.Top="190" Width="80" Height="50" Click="startHourPlus_Click" Content="+" FontSize="34"></Button>
             <Button Name="startHourMin" Canvas.Left="380" Canvas.Top="190" Width="80" Height="50" Click="startHourMin_Click" Content="-" FontSize="34"></Button>
 
-            <TextBox Canvas.Left="700" Canvas.Top="190" Width="90" Height="40" Text="Minute" FontSize="24" ></TextBox>
+            <Label Canvas.Left="700" Canvas.Top="190" Width="90" Height="40" Content="Minute" FontSize="24" ></Label>
             <TextBox Canvas.Left="900" Canvas.Top="190" Width="80" Height="50" Text="15" FontSize="24" TextAlignment="Center" Name="startMin"></TextBox>
             <Button Name="startMinPlus" Canvas.Left="800" Canvas.Top="190" Width="80" Height="50" Click="startMinPlus_Click" Content="+5" FontSize="34"></Button>
             <Button Name="startMinMin" Canvas.Left="1000" Canvas.Top="190" Width="80" Height="50" Click="startMinMin_Click" Content="-5" FontSize="34"></Button>
 
-            <TextBox Canvas.Left="30" Canvas.Top="300" Width="250" Height="50" Text="  End Time" FontSize="34" FontWeight="Bold"></TextBox>
+            <Label Canvas.Left="30" Canvas.Top="300" Width="250" Height="50" Content="  End Time" FontSize="34" FontWeight="Bold"></Label>
 
-            <TextBox Canvas.Left="50" Canvas.Top="350" Width="70" Height="40" Text="Hour" FontSize="24" ></TextBox>
+            <Label Canvas.Left="50" Canvas.Top="350" Width="70" Height="40" Content="Hour" FontSize="24" ></Label>
             <TextBox Canvas.Left="270" Canvas.Top="350" Width="80" Height="50" Text="13" FontSize="24" TextAlignment="Center" Name="endHour"></TextBox>
             <Button Name="endHourPlus" Canvas.Left="160" Canvas.Top="350" Width="80" Height="50" Click="endHourPlus_Click" Content="+" FontSize="34"></Button>
             <Button Name="endHourMin" Canvas.Left="380" Canvas.Top="350" Width="80" Height="50" Click="endHourMin_Click" Content="-" FontSize="34"></Button>
 
-            <TextBox Canvas.Left="700" Canvas.Top="350" Width="90" Height="40" Text="Minute" FontSize="24" ></TextBox>
+            <Label Canvas.Left="700" Canvas.Top="350" Width="90" Height="40" Content="Minute" FontSize="24" ></Label>
             <TextBox Canvas.Left="900" Canvas.Top="350" Width="80" Height="50" Text="15" FontSize="24" TextAlignment="Center" Name="endMin"></TextBox>
             <Button Name="endMinPlus" Canvas.Left="800" Canvas.Top="350" Width="80" Height="50" Click="endMinPlus_Click"  Content="+5" FontSize="34"></Button>
             <Button Name="endMinMin" Canvas.Left="1000" Canvas.Top="350" Width="80" Height="50" Click="endMinMin_Click"  Content="-5" FontSize="34"></Button>
@@ -116,8 +116,8 @@
         
 
         <Canvas Height="700" Width="1150" Name="beforeStart" HorizontalAlignment="Stretch" Visibility="Collapsed">
-            <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
-            <TextBox Canvas.Left="450" Canvas.Top="140" Width="250" Height="30" Text="Time until office hour" FontSize="22" FontWeight="Bold"></TextBox>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+            <Label Canvas.Left="450" Canvas.Top="130" Width="250" Height="40" Content="Time until office hour" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center"></Label>
             
             <TextBox Canvas.Left="475" Canvas.Top="180" Width="200" Height="30" FontSize="20" Name="disTimeBeforeStart"></TextBox>
             
@@ -166,7 +166,7 @@
 
 
         <Canvas Height="700" Width="1150" Name="ended" HorizontalAlignment="Stretch" Visibility="Collapsed">
-            <TextBox Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Text="Office Hour Helper" FontSize="48" TextAlignment="Center"></TextBox>
+            <Label Height="80" Width="450" Canvas.Left="320" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
             <!--don't know what to put here-->
             
         </Canvas>
