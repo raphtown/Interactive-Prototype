@@ -406,7 +406,7 @@ namespace FinalProjectV1
             if (m < 0)
             {
                 m = m + 60;
-                h = sHour - DateTime.Now.Hour - 1;
+                h = (sHour - DateTime.Now.Hour - 1) % 24;
             }
             else
                 h = sHour - DateTime.Now.Hour;
