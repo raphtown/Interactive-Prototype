@@ -152,7 +152,7 @@ namespace FinalProjectV1
         private ImageSource getHeadshot(Skeleton sk, ColorImageFrame colorFrame)
         {
             Joint head = sk.Joints[JointType.Head];
-            Joint scaledHead = head.ScaleTo(320, 240, 0.25f, 0.25f);
+            Joint scaledHead = head.ScaleTo(640, 480, 0.25f, 0.25f);
 
             int x = (int)scaledHead.Position.X;
             int y = (int)scaledHead.Position.Y;
@@ -168,10 +168,11 @@ namespace FinalProjectV1
             int stride = colorFrame.Width * 4;
 
             BitmapSource frame = BitmapSource.Create(colorFrame.Width, colorFrame.Height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
-            if (x - 32 < 0 || y - 32 < 0 || x - 32 > 320-65 || y - 32 > 240-65)
+            if (x - 32 >= 0 && y - 32 >= 0 && x - 32 < 640-65 && y - 32 < 480-65)
             {
-                CroppedBitmap pic = new CroppedBitmap(frame, new Int32Rect(x-32, y-32, 65, 65));
-
+                x = x - 32;
+                y = y - 32;
+                CroppedBitmap pic = new CroppedBitmap(frame, new Int32Rect(x, y, 65, 65));
                 return pic;
             }
             return null;
