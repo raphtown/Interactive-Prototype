@@ -66,6 +66,10 @@ namespace FinalProjectV1
         DispatcherTimer startOH = new DispatcherTimer();
         private Button currentFocus = null;
         ArrayList allRecognizers = new ArrayList();
+        const int helpPage = 0;
+        const int timeSelect = 1;
+        const int waitScreen = 2;
+        const int ohScreen = 3;
         #endregion
 
         //
@@ -75,7 +79,7 @@ namespace FinalProjectV1
             InitializeComponent();
             t.Interval = TimeSpan.FromMilliseconds(30000);
             t.Tick += new EventHandler(dis_help);
-            currentPage = 0;
+            currentPage = helpPage;
             sHour = int.Parse(startHour.Text);
             sMin = int.Parse(startMin.Text);
             eHour = int.Parse(endHour.Text);
@@ -133,11 +137,11 @@ namespace FinalProjectV1
                 MoveMousePosition(sk);
             }
 
-            if (currentPage == 2)
+            if (currentPage == waitScreen)
             {
                 disTimeBeforeStart.Text = dis_time_before_OH();
             }
-            else if (currentPage == 3)
+            else if (currentPage == ohScreen)
             {
                 disTimeOver.Text = dis_time_left();
             }
@@ -264,7 +268,7 @@ namespace FinalProjectV1
         {
             initialPage.Visibility = Visibility.Collapsed;
             initialTimeSelection.Visibility = Visibility.Visible;
-            currentPage = 1;
+            currentPage = timeSelect;
             t.Start(); // start the timer
         }
 
@@ -356,7 +360,7 @@ namespace FinalProjectV1
                {
                     initialTimeSelection.Visibility = Visibility.Collapsed;
                     beforeStart.Visibility = Visibility.Visible;
-                    currentPage = 2;
+                    currentPage = waitScreen;
                     startOH.Interval = TimeSpan.FromMilliseconds(calTime());
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
@@ -437,12 +441,12 @@ namespace FinalProjectV1
         private void dis_help(object sender, EventArgs e)
         {
             //checking current page 
-            if (currentPage == 1)
+            if (currentPage == timeSelect)
             {
                 initialTimeSelection.Visibility = Visibility.Collapsed;
                 helpForTimeout.Visibility = Visibility.Visible;
             }
-           /* else if (currentPage == 2)
+           /* else if (currentPage == waitScreen)
             {
                 beforeStart.Visibility = Visibility.Collapsed;
                 helpForTimeout.Visibility = Visibility.Visible;
@@ -459,20 +463,20 @@ namespace FinalProjectV1
             t.Stop();
             beforeStart.Visibility = Visibility.Collapsed;
             OHStarted.Visibility = Visibility.Visible;
-            currentPage = 3;
+            currentPage = ohScreen;
         }
             
 
 
         private void cSpecial_Click(object sender, RoutedEventArgs e)
         {
-            if (currentPage == 1)
+            if (currentPage == timeSelect)
             {
                 helpForTimeout.Visibility = Visibility.Collapsed;
                 initialTimeSelection.Visibility = Visibility.Visible;
                 t.Start();
             }
-            else if (currentPage == 2)
+            else if (currentPage == waitScreen)
             {
                 helpForTimeout.Visibility = Visibility.Collapsed;
                 beforeStart.Visibility = Visibility.Visible;
@@ -486,7 +490,7 @@ namespace FinalProjectV1
             t.Stop();
             beforeStart.Visibility = Visibility.Collapsed;
             initialTimeSelection.Visibility = Visibility.Visible;
-            currentPage = 1;
+            currentPage = timeSelect;
             t.Start();
         }
     }
