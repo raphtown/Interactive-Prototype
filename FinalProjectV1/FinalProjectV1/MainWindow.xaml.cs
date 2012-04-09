@@ -122,7 +122,7 @@ namespace FinalProjectV1
             }
         }
 
-
+        Boolean gotHeadshot = false;
         void newSensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
             if (closing)
@@ -134,7 +134,11 @@ namespace FinalProjectV1
             //initialPage.Visibility = Visibility.Visible;
             if (sk != null)
             {
-                Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
+                if (true)
+                {
+                    gotHeadshot = true;
+                    Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
+                }
                 MoveMousePosition(sk);
             }
 
@@ -152,11 +156,11 @@ namespace FinalProjectV1
         private ImageSource getHeadshot(Skeleton sk, ColorImageFrame colorFrame)
         {
             Joint head = sk.Joints[JointType.Head];
-            Joint scaledHead = head.ScaleTo(640, 480, 0.25f, 0.25f);
+            // Magic numbers, head position seems to scale with depth, these values are calibrated for a specific depth
+            Joint scaledHead = head.ScaleTo(640, 480, 1.25f, 0.9f);
 
             int x = (int)scaledHead.Position.X;
             int y = (int)scaledHead.Position.Y;
-
             if (colorFrame == null)
             {
                 return null;
@@ -168,13 +172,15 @@ namespace FinalProjectV1
             int stride = colorFrame.Width * 4;
 
             BitmapSource frame = BitmapSource.Create(colorFrame.Width, colorFrame.Height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
-            if (x - 32 >= 0 && y - 32 >= 0 && x - 32 < 640-65 && y - 32 < 480-65)
+            if (x - 32 >= 0 && y - 16 >= 0 && x - 32 < 640-65 && y - 16 < 480-65)
             {
                 x = x - 32;
-                y = y - 32;
+                y = y - 16;
                 CroppedBitmap pic = new CroppedBitmap(frame, new Int32Rect(x, y, 65, 65));
+                colorFrame.Dispose();
                 return pic;
             }
+            colorFrame.Dispose();
             return null;
         }
 
