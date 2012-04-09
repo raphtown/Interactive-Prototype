@@ -147,7 +147,7 @@
                 <Rectangle Name="Student2Back" Height="75" Width="270" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
                 <Border BorderBrush="Black" Height="75" Width="270" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student2Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
-                <TextBox Name="Student2Name" Height="65" Width="120" Canvas.Left="75" Canvas.Top="5"></TextBox>
+                <TextBox Name="Student2Name" Height="65" Width="120" Canvas.Left="75" Canvas.Top="5" FontSize="20" TextWrapping="Wrap"></TextBox>
                 <Rectangle Name="WhiteBox2" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Fill="White"></Rectangle>
                 <Image Name="Student2Question" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Source="question.jpg" Visibility="Collapsed"></Image>
             </Canvas>

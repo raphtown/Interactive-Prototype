@@ -74,6 +74,8 @@ namespace FinalProjectV1
         const double secondX = 295.0;
         bool stu1quest = false;
         bool stu2quest = false;
+        int framecount = 0;
+        const int maxCount = 20;
         #endregion
 
         //
@@ -131,6 +133,7 @@ namespace FinalProjectV1
         Boolean gotHeadshot = false;
         void newSensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
+            framecount--;
             if (closing)
             {
                 return;
@@ -146,6 +149,7 @@ namespace FinalProjectV1
                     Student1.Visibility = Visibility.Visible;
                     if (rightHandRaised(sk) && !stu1quest)
                     {
+                        framecount = maxCount;
                         if (!stu2quest)
                         {
                             Student2.SetValue(Canvas.LeftProperty, secondX);
@@ -157,6 +161,7 @@ namespace FinalProjectV1
                     }
                     else if (rightHandRaised(sk) && stu1quest)
                     {
+                        framecount = maxCount;
                         if (stu2quest)
                         {
                             Student2.SetValue(Canvas.LeftProperty, firstX);
@@ -177,6 +182,7 @@ namespace FinalProjectV1
 
                         if (rightHandRaised(sk2) && !stu2quest)
                         {
+                            framecount = maxCount;
                             if (!stu1quest)
                             {
                                 Student2.SetValue(Canvas.LeftProperty, firstX);
@@ -188,6 +194,7 @@ namespace FinalProjectV1
                         }
                         else if (rightHandRaised(sk2) && stu2quest)
                         {
+                            framecount = maxCount;
                             if (stu1quest)
                             {
                                 Student2.SetValue(Canvas.LeftProperty, secondX);
@@ -237,7 +244,7 @@ namespace FinalProjectV1
 
         private Boolean rightHandRaised(Skeleton sk)
         {
-            return sk.Joints[JointType.HandRight].Position.Y>sk.Joints[JointType.Head].Position.Y;
+            return sk.Joints[JointType.HandRight].Position.Y>sk.Joints[JointType.Head].Position.Y&&(framecount<=0);
         }
 
         private ImageSource getHeadshot(Skeleton sk, ColorImageFrame colorFrame)
@@ -480,7 +487,7 @@ namespace FinalProjectV1
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            sMin = sMin + 1;
+            sMin = sMin + 5;
             startMin.Text = (sMin % 60).ToString();
             eMin = sMin;
             endMin.Text = startMin.Text;
