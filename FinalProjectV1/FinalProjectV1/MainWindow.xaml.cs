@@ -72,6 +72,8 @@ namespace FinalProjectV1
         const int ohScreen = 3;
         const double firstX = 10.0;
         const double secondX = 220.0;
+        bool stu1quest = false;
+        bool stu2quest = false;
         #endregion
 
         //
@@ -140,6 +142,23 @@ namespace FinalProjectV1
                 if (currentPage == ohScreen)
                 {
                     Student1.Visibility = Visibility.Visible;
+                    if (rightHandRaised(sk) && !stu1quest)
+                    {
+                        Student2.SetValue(Canvas.LeftProperty, secondX);
+                        Student1.SetValue(Canvas.LeftProperty, firstX);
+                        stu1quest = true;
+                        Student1Back.Opacity = 1.0;
+                    }
+                    else if (leftHandRaised(sk) && stu1quest)
+                    {
+                        if (stu2quest)
+                        {
+                            Student2.SetValue(Canvas.LeftProperty, firstX);
+                            Student1.SetValue(Canvas.LeftProperty, secondX);
+                        }
+                        stu1quest = false;
+                        Student1Back.Opacity = 0.0;
+                    }
                     double z = sk.Joints[JointType.Head].Position.Z;
                     if (Student1Pic.Source == null&&z>1.6&&z<1.8)
                     {
@@ -148,13 +167,32 @@ namespace FinalProjectV1
                     Skeleton sk2 = getSecondSke(e);
                     if (sk2 != null)
                     {
-                        Student2.SetValue(Canvas.LeftProperty, firstX);
-                        Student1.SetValue(Canvas.LeftProperty, secondX);
+
+                        if (rightHandRaised(sk2) && !stu2quest)
+                        {
+                            Student2.SetValue(Canvas.LeftProperty, firstX);
+                            Student1.SetValue(Canvas.LeftProperty, secondX);
+                            stu1quest = true;
+                            Student1Back.Opacity = 1.0;
+                        }
+                        else if (leftHandRaised(sk2) && stu2quest)
+                        {
+                            if (stu1quest)
+                            {
+                                Student2.SetValue(Canvas.LeftProperty, secondX);
+                                Student1.SetValue(Canvas.LeftProperty, firstX);
+                            }
+                            stu1quest = false;
+                            Student1Back.Opacity = 0.0;
+                        }
 
                         Student2.Visibility = Visibility.Visible;
                         z = sk2.Joints[JointType.Head].Position.Z;
                         if (Student2Pic.Source == null && z > 1.6 && z < 1.8)
                         {
+
+                            Student2.SetValue(Canvas.LeftProperty, firstX);
+                            Student1.SetValue(Canvas.LeftProperty, secondX);
                             Student2Pic.Source = getHeadshot(sk2, e.OpenColorImageFrame());
                         }
                     }
@@ -178,6 +216,16 @@ namespace FinalProjectV1
                 disTimeOver.Text = dis_time_left();
             }
             
+        }
+
+        private Boolean leftHandRaised(Skeleton sk)
+        {
+            return sk.Joints[JointType.HandLeft].Position.Y>sk.Joints[JointType.Head].Position.Y;
+        }
+
+        private Boolean rightHandRaised(Skeleton sk)
+        {
+            return sk.Joints[JointType.HandRight].Position.Y>sk.Joints[JointType.Head].Position.Y;
         }
 
         private ImageSource getHeadshot(Skeleton sk, ColorImageFrame colorFrame)
