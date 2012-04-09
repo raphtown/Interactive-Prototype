@@ -134,13 +134,15 @@
             <!--most complicate one, need color viewer, dynamic arrange the tag, 
              these can only be set by prof: add 5 mins button, (read help)-->
 
-            <Canvas Name="Student1" Height="75" Width="200" Canvas.Left="10" Canvas.Top="20">
+            <Canvas Name="Student1" Height="75" Width="200" Canvas.Left="10" Canvas.Top="20" Visibility="Collapsed">
+                <Rectangle Name="Student1Back" Height="75" Width="200" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
                 <Border BorderBrush="Black" Height="75" Width="200" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student1Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
                 <TextBox Name="Student1Name" Height="65" Width="120" Canvas.Right="5" Canvas.Top="5" FontSize="20" TextWrapping="Wrap" OpacityMask="White"></TextBox>
             </Canvas>
 
-            <Canvas Name="Student2" Height="75" Width="200" Canvas.Left="220" Canvas.Top="20">
+            <Canvas Name="Student2" Height="75" Width="200" Canvas.Left="220" Canvas.Top="20" Visibility="Collapsed">
+                <Rectangle Name="Student2Back" Height="75" Width="200" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
                 <Border BorderBrush="Black" Height="75" Width="200" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student2Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
                 <TextBox Name="Student2Name" Height="65" Width="120" Canvas.Right="5" Canvas.Top="5"></TextBox>

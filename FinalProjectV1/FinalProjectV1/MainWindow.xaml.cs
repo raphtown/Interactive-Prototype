@@ -70,6 +70,8 @@ namespace FinalProjectV1
         const int timeSelect = 1;
         const int waitScreen = 2;
         const int ohScreen = 3;
+        const double firstX = 10.0;
+        const double secondX = 220.0;
         #endregion
 
         //
@@ -103,14 +105,14 @@ namespace FinalProjectV1
             newSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
             var parameters = new TransformSmoothParameters
             {
-                Smoothing = 0.3f,
+                Smoothing = 0.1f,
                 Correction = 0.0f,
                 Prediction = 0.0f,
                 JitterRadius = 1.0f,
                 MaxDeviationRadius = 0.5f
             };
-            //newSensor.SkeletonStream.Enable(parameters);
-            newSensor.SkeletonStream.Enable();
+            newSensor.SkeletonStream.Enable(parameters);
+            //newSensor.SkeletonStream.Enable();
             newSensor.AllFramesReady += new EventHandler<AllFramesReadyEventArgs>(newSensor_AllFramesReady);
             try
             {
@@ -135,11 +137,33 @@ namespace FinalProjectV1
             
             if (sk != null)
             {
-                if (true)
+                if (currentPage == ohScreen)
+                {
+                    Student1.Visibility = Visibility.Visible;
+                    double z = sk.Joints[JointType.Head].Position.Z;
+                    if (Student1Pic.Source == null&&z>1.6&&z<1.8)
+                    {
+                        Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
+                    }
+                    Skeleton sk2 = getSecondSke(e);
+                    if (sk2 != null)
+                    {
+                        Student2.SetValue(Canvas.LeftProperty, firstX);
+                        Student1.SetValue(Canvas.LeftProperty, secondX);
+
+                        Student2.Visibility = Visibility.Visible;
+                        z = sk2.Joints[JointType.Head].Position.Z;
+                        if (Student2Pic.Source == null && z > 1.6 && z < 1.8)
+                        {
+                            Student2Pic.Source = getHeadshot(sk2, e.OpenColorImageFrame());
+                        }
+                    }
+                }
+                /*if (true)
                 {
                     gotHeadshot = true;
                     Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
-                }
+                }*/
                 MoveMousePosition(sk);
                 Dictionary<JointType, Point3D> normalizedJointData = NormalizeJoints(sk);
                 RecognizeGesture(normalizedJointData);
@@ -334,6 +358,32 @@ namespace FinalProjectV1
                 skeletonFrameData.CopySkeletonDataTo(allSkeleton);
                 Skeleton first = (from s in allSkeleton where s.TrackingState == SkeletonTrackingState.Tracked select s).FirstOrDefault();
                 return first;
+            }
+        }
+
+        Skeleton getSecondSke(AllFramesReadyEventArgs e)
+        {
+            using (SkeletonFrame skeletonFrameData = e.OpenSkeletonFrame())
+            {
+                if (skeletonFrameData == null)
+                {
+                    return null;
+                }
+
+                skeletonFrameData.CopySkeletonDataTo(allSkeleton);
+                int inc = 0;
+                Skeleton second = null;
+                foreach (Skeleton s in allSkeleton)
+                {
+                    if (s.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        inc++;
+                        if (inc == 2)
+                            second = s;
+                    }
+                }
+
+                return second;
             }
         }
 
