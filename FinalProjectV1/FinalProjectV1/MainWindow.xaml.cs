@@ -175,7 +175,7 @@ namespace FinalProjectV1
                             Student2.SetValue(Canvas.LeftProperty, firstX);
                             Student1.SetValue(Canvas.LeftProperty, secondX);
                             stu1quest = true;
-                            Student1Back.Opacity = 1.0;
+                            Student2Back.Opacity = 1.0;
                         }
                         else if (leftHandRaised(sk2) && stu2quest)
                         {
@@ -185,7 +185,7 @@ namespace FinalProjectV1
                                 Student1.SetValue(Canvas.LeftProperty, firstX);
                             }
                             stu1quest = false;
-                            Student1Back.Opacity = 0.0;
+                            Student2Back.Opacity = 0.0;
                         }
 
                         Student2.Visibility = Visibility.Visible;
@@ -443,6 +443,7 @@ namespace FinalProjectV1
             initialTimeSelection.Visibility = Visibility.Visible;
             currentPage = timeSelect;
             t.Start(); // start the timer
+            setCurrentFocus(null);
         }
 
         private void startHourPlus_Click(object sender, RoutedEventArgs e)
@@ -537,6 +538,7 @@ namespace FinalProjectV1
                     startOH.Interval = TimeSpan.FromMilliseconds(calTime());
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
+                    setCurrentFocus(null);
                }
                //t.Start();
             }
@@ -628,6 +630,7 @@ namespace FinalProjectV1
             beforeStart.Visibility = Visibility.Collapsed;
             OHStarted.Visibility = Visibility.Visible;
             currentPage = ohScreen;
+            setCurrentFocus(null);
         }
             
 
@@ -662,6 +665,8 @@ namespace FinalProjectV1
         {
             setCurrentFocus((Button)sender);
         }
+
+        
         
     }
 }
