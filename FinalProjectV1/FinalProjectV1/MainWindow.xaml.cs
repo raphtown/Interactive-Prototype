@@ -132,6 +132,7 @@ namespace FinalProjectV1
 
             Skeleton sk = getFirstSke(e);
             //initialPage.Visibility = Visibility.Visible;
+            
             if (sk != null)
             {
                 if (true)
@@ -140,6 +141,8 @@ namespace FinalProjectV1
                     Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
                 }
                 MoveMousePosition(sk);
+                Dictionary<JointType, Point3D> normalizedJointData = NormalizeJoints(sk);
+                RecognizeGesture(normalizedJointData);
             }
 
             if (currentPage == waitScreen)
@@ -207,6 +210,37 @@ namespace FinalProjectV1
                     }
                 }
             }
+        }
+
+        // Normalize all joint data by setting shoulder center to be origin
+        // and shoulder width to be 1.0.
+        private Dictionary<JointType, Point3D> NormalizeJoints(Skeleton sk)
+        {
+            Dictionary<JointType, Point3D> normalizedJointData = new Dictionary<JointType, Point3D>();
+
+            // Make all joints' position relative to the shoulder center
+            SkeletonPoint shouldCenter = sk.Joints[JointType.ShoulderCenter].Position;
+            foreach (JointType jointType in Enum.GetValues(typeof(JointType)).Cast<JointType>())
+            {
+                Point3D newPoint = new Point3D();
+                normalizedJointData.Add(jointType, newPoint);
+                newPoint.X = sk.Joints[jointType].Position.X - shouldCenter.X;
+                newPoint.Y = sk.Joints[jointType].Position.Y - shouldCenter.Y;
+                newPoint.Z = sk.Joints[jointType].Position.Z - shouldCenter.Z;
+            }
+
+            // Normalize the distance between each point and the shoulder center
+            double shouldWidth = Point3D.Dist(sk.Joints[JointType.ShoulderLeft].Position,
+                                              sk.Joints[JointType.ShoulderRight].Position);
+            foreach (JointType jointType in Enum.GetValues(typeof(JointType)).Cast<JointType>())
+            {
+                Point3D p = normalizedJointData[jointType];
+                p.X /= shouldWidth;
+                p.Y /= shouldWidth;
+                p.Z /= shouldWidth;
+            }
+
+            return normalizedJointData;
         }
 
         private string dis_time_left()
@@ -523,5 +557,7 @@ namespace FinalProjectV1
             currentPage = timeSelect;
             t.Start();
         }
+
+        
     }
 }
