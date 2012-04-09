@@ -71,7 +71,7 @@ namespace FinalProjectV1
         const int waitScreen = 2;
         const int ohScreen = 3;
         const double firstX = 10.0;
-        const double secondX = 220.0;
+        const double secondX = 295.0;
         bool stu1quest = false;
         bool stu2quest = false;
         #endregion
@@ -153,6 +153,7 @@ namespace FinalProjectV1
                         }
                         stu1quest = true;
                         Student1Back.Opacity = 1.0;
+                        Student1Question.Visibility = Visibility.Visible;
                     }
                     else if (leftHandRaised(sk) && stu1quest)
                     {
@@ -163,6 +164,7 @@ namespace FinalProjectV1
                         }
                         stu1quest = false;
                         Student1Back.Opacity = 0.0;
+                        Student1Question.Visibility = Visibility.Collapsed;
                     }
                     double z = sk.Joints[JointType.Head].Position.Z;
                     if (Student1Pic.Source == null&&z>1.6&&z<1.8)
@@ -182,6 +184,7 @@ namespace FinalProjectV1
                             }
                             stu2quest = true;
                             Student2Back.Opacity = 1.0;
+                            Student2Question.Visibility = Visibility.Visible;
                         }
                         else if (leftHandRaised(sk2) && stu2quest)
                         {
@@ -192,6 +195,7 @@ namespace FinalProjectV1
                             }
                             stu2quest = false;
                             Student2Back.Opacity = 0.0;
+                            Student2Question.Visibility = Visibility.Collapsed;
                         }
 
                         Student2.Visibility = Visibility.Visible;

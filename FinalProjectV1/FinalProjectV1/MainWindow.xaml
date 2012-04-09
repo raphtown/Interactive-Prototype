@@ -134,18 +134,22 @@
             <!--most complicate one, need color viewer, dynamic arrange the tag, 
              these can only be set by prof: add 5 mins button, (read help)-->
 
-            <Canvas Name="Student1" Height="75" Width="200" Canvas.Left="10" Canvas.Top="20" Visibility="Collapsed">
-                <Rectangle Name="Student1Back" Height="75" Width="200" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
-                <Border BorderBrush="Black" Height="75" Width="200" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
+            <Canvas Name="Student1" Height="75" Width="270" Canvas.Left="10" Canvas.Top="20" Visibility="Collapsed">
+                <Rectangle Name="Student1Back" Height="75" Width="270" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
+                <Border BorderBrush="Black" Height="75" Width="270" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student1Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
-                <TextBox Name="Student1Name" Height="65" Width="120" Canvas.Right="5" Canvas.Top="5" FontSize="20" TextWrapping="Wrap" OpacityMask="White" ></TextBox>
+                <TextBox Name="Student1Name" Height="65" Width="120" Canvas.Right="75" Canvas.Top="5" FontSize="20" TextWrapping="Wrap" OpacityMask="White" ></TextBox>
+                <Rectangle Name="WhiteBox1" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Fill="White"></Rectangle>
+                <Image Name="Student1Question" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Source="question.jpg" Visibility="Collapsed"></Image>
             </Canvas>
 
-            <Canvas Name="Student2" Height="75" Width="200" Canvas.Left="220" Canvas.Top="20" Visibility="Collapsed">
-                <Rectangle Name="Student2Back" Height="75" Width="200" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
-                <Border BorderBrush="Black" Height="75" Width="200" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
+            <Canvas Name="Student2" Height="75" Width="270" Canvas.Left="290" Canvas.Top="20" Visibility="Collapsed">
+                <Rectangle Name="Student2Back" Height="75" Width="270" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
+                <Border BorderBrush="Black" Height="75" Width="270" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student2Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
-                <TextBox Name="Student2Name" Height="65" Width="120" Canvas.Right="5" Canvas.Top="5"></TextBox>
+                <TextBox Name="Student2Name" Height="65" Width="120" Canvas.Left="75" Canvas.Top="5"></TextBox>
+                <Rectangle Name="WhiteBox2" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Fill="White"></Rectangle>
+                <Image Name="Student2Question" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Source="question.jpg" Visibility="Collapsed"></Image>
             </Canvas>
 
             <my:KinectColorViewer Canvas.Left="400" Canvas.Bottom="7" Name="kinectColorViewer1" Height="240" Width="320" Kinect="{Binding ElementName=kinectSensorChooser1, Path=Kinect}" />
