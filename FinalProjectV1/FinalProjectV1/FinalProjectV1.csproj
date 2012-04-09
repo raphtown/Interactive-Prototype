@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Coding4Fun.Kinect.Wpf">
-      <HintPath>..\..\..\..\hw\hw2\Chenkai-Gao-ipa2\cs160assignment2\cs160assignment2\bin\Debug\Coding4Fun.Kinect.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\Coding4Fun.Kinect.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Kinect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />

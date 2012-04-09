@@ -41,9 +41,9 @@
                 </FlowDocument>
 
             </RichTextBox>
-           
 
-            <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="100" Height="50" Content="Continue" Click="cSpecial_Click"  FontSize="18"></Button>
+
+            <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="100" Height="50" Content="Continue" Click="cSpecial_Click"  FontSize="18" MouseEnter="allMouseEnter"></Button>
         </Canvas>
 
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
@@ -77,8 +77,8 @@
                 </FlowDocument>
 
             </RichTextBox>
-            
-            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="18"></Button>
+
+            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="18" MouseEnter="allMouseEnter"></Button>
             
         </Canvas>
 
@@ -92,29 +92,29 @@
             <Label Canvas.Left="30" Canvas.Top="140" Width="250" Height="50" Content="Start Time" FontSize="34" FontWeight="Bold"></Label>
             <Label Canvas.Left="50" Canvas.Top="190" Width="70" Height="40" Content="Hour" FontSize="24" ></Label>
             <TextBox Canvas.Left="270" Canvas.Top="190" Width="80" Height="50" Text="12" FontSize="24" TextAlignment="Center" Name="startHour"></TextBox>
-            <Button Name="startHourPlus" Canvas.Left="160" Canvas.Top="190" Width="80" Height="50" Click="startHourPlus_Click" Content="+" FontSize="34"></Button>
-            <Button Name="startHourMin" Canvas.Left="380" Canvas.Top="190" Width="80" Height="50" Click="startHourMin_Click" Content="-" FontSize="34"></Button>
+            <Button Name="startHourPlus" Canvas.Left="160" Canvas.Top="190" Width="80" Height="50" Click="startHourPlus_Click" Content="+" FontSize="34" MouseEnter="allMouseEnter"></Button>
+            <Button Name="startHourMin" Canvas.Left="380" Canvas.Top="190" Width="80" Height="50" Click="startHourMin_Click" Content="-" FontSize="34" MouseEnter="allMouseEnter"></Button>
 
             <Label Canvas.Left="700" Canvas.Top="190" Width="90" Height="40" Content="Minute" FontSize="24" ></Label>
             <TextBox Canvas.Left="900" Canvas.Top="190" Width="80" Height="50" Text="15" FontSize="24" TextAlignment="Center" Name="startMin"></TextBox>
-            <Button Name="startMinPlus" Canvas.Left="800" Canvas.Top="190" Width="80" Height="50" Click="startMinPlus_Click" Content="+5" FontSize="34"></Button>
-            <Button Name="startMinMin" Canvas.Left="1000" Canvas.Top="190" Width="80" Height="50" Click="startMinMin_Click" Content="-5" FontSize="34"></Button>
+            <Button Name="startMinPlus" Canvas.Left="800" Canvas.Top="190" Width="80" Height="50" Click="startMinPlus_Click" Content="+5" FontSize="34" MouseEnter="allMouseEnter"></Button>
+            <Button Name="startMinMin" Canvas.Left="1000" Canvas.Top="190" Width="80" Height="50" Click="startMinMin_Click" Content="-5" FontSize="34" MouseEnter="allMouseEnter"></Button>
 
             <Label Canvas.Left="30" Canvas.Top="300" Width="250" Height="50" Content="  End Time" FontSize="34" FontWeight="Bold"></Label>
 
             <Label Canvas.Left="50" Canvas.Top="350" Width="70" Height="40" Content="Hour" FontSize="24" ></Label>
             <TextBox Canvas.Left="270" Canvas.Top="350" Width="80" Height="50" Text="13" FontSize="24" TextAlignment="Center" Name="endHour"></TextBox>
-            <Button Name="endHourPlus" Canvas.Left="160" Canvas.Top="350" Width="80" Height="50" Click="endHourPlus_Click" Content="+" FontSize="34"></Button>
-            <Button Name="endHourMin" Canvas.Left="380" Canvas.Top="350" Width="80" Height="50" Click="endHourMin_Click" Content="-" FontSize="34"></Button>
+            <Button Name="endHourPlus" Canvas.Left="160" Canvas.Top="350" Width="80" Height="50" Click="endHourPlus_Click" Content="+" FontSize="34" MouseEnter="allMouseEnter"></Button>
+            <Button Name="endHourMin" Canvas.Left="380" Canvas.Top="350" Width="80" Height="50" Click="endHourMin_Click" Content="-" FontSize="34" MouseEnter="allMouseEnter"></Button>
 
             <Label Canvas.Left="700" Canvas.Top="350" Width="90" Height="40" Content="Minute" FontSize="24" ></Label>
             <TextBox Canvas.Left="900" Canvas.Top="350" Width="80" Height="50" Text="15" FontSize="24" TextAlignment="Center" Name="endMin"></TextBox>
-            <Button Name="endMinPlus" Canvas.Left="800" Canvas.Top="350" Width="80" Height="50" Click="endMinPlus_Click"  Content="+5" FontSize="34"></Button>
-            <Button Name="endMinMin" Canvas.Left="1000" Canvas.Top="350" Width="80" Height="50" Click="endMinMin_Click"  Content="-5" FontSize="34"></Button>
+            <Button Name="endMinPlus" Canvas.Left="800" Canvas.Top="350" Width="80" Height="50" Click="endMinPlus_Click"  Content="+5" FontSize="34" MouseEnter="allMouseEnter"></Button>
+            <Button Name="endMinMin" Canvas.Left="1000" Canvas.Top="350" Width="80" Height="50" Click="endMinMin_Click"  Content="-5" FontSize="34" MouseEnter="allMouseEnter"></Button>
             <!--two buttons next to these two textbox-->
 
 
-            <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="100" Height="50" Content="Continue" Click="c2_Click" FontSize="18"></Button>
+            <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="100" Height="50" Content="Continue" Click="c2_Click" FontSize="18" MouseEnter="allMouseEnter"></Button>
 
         </Canvas>
         
@@ -124,8 +124,8 @@
             <Label Canvas.Left="400" Canvas.Top="130" Width="350" Height="40" Content="Time until office hour" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center"></Label>
             
             <TextBox Canvas.Left="475" Canvas.Top="180" Width="200" Height="30" FontSize="20" Name="disTimeBeforeStart"></TextBox>
-            
-            <Button Canvas.Left="475" Canvas.Top="230" Width="200" Height="60" Content="Change time" Name="ct" FontSize="22" Click="ct_Click"></Button>
+
+            <Button Canvas.Left="475" Canvas.Top="230" Width="200" Height="60" Content="Change time" Name="ct" FontSize="22" Click="ct_Click" MouseEnter="allMouseEnter"></Button>
             <!--one display the time left until the office hour starts, one button to reset the time, (another one to recalibrate**not considered this time**)-->
             <!--a help button-->
         </Canvas>
@@ -172,8 +172,8 @@
 
             <Label Canvas.Right="300" Canvas.Bottom="200" Width="120" Height="50" Content="Time Left:" FontSize="22" Name="timeLeftLabel"></Label>
             <TextBox Canvas.Right="60" Canvas.Bottom="200" Width="220" Height="50" FontSize="20" Name="disTimeOver" ></TextBox>
-            <Button Canvas.Right="250" Canvas.Bottom="120" Width="150" Height="50" Content="-5" Name="min5Btn" Click="min5_Click" FontSize="34"></Button>
-            <Button Canvas.Right="50" Canvas.Bottom="120" Width="150" Height="50" Content="+5" Name="plus5Btn" Click="plus5_Click" FontSize="34"></Button>
+            <Button Canvas.Right="250" Canvas.Bottom="120" Width="150" Height="50" Content="-5" Name="min5Btn" Click="min5_Click" FontSize="34" MouseEnter="allMouseEnter"></Button>
+            <Button Canvas.Right="50" Canvas.Bottom="120" Width="150" Height="50" Content="+5" Name="plus5Btn" Click="plus5_Click" FontSize="34" MouseEnter="allMouseEnter"></Button>
         </Canvas>                                                    
 
 

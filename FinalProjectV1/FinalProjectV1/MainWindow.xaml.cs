@@ -95,6 +95,8 @@ namespace FinalProjectV1
         {
             kinectSensorChooser1.KinectSensorChanged += new DependencyPropertyChangedEventHandler(kinectSensorChooser1_KinectSensorChanged);
             //initialPage.Visibility = Visibility.Visible;
+            System.Drawing.Point winPos = new System.Drawing.Point((int)this.Left, (int)this.Top);
+            System.Drawing.Size winSize = new System.Drawing.Size((int)this.Width, (int)this.Height);
         }
 
         void kinectSensorChooser1_KinectSensorChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -656,6 +658,10 @@ namespace FinalProjectV1
             t.Start();
         }
 
+        private void allMouseEnter(object sender, MouseEventArgs e)
+        {
+            setCurrentFocus((Button)sender);
+        }
         
     }
 }
