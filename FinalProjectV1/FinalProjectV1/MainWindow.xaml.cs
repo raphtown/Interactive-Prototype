@@ -146,8 +146,11 @@ namespace FinalProjectV1
                     Student1.Visibility = Visibility.Visible;
                     if (rightHandRaised(sk) && !stu1quest)
                     {
-                        Student2.SetValue(Canvas.LeftProperty, secondX);
-                        Student1.SetValue(Canvas.LeftProperty, firstX);
+                        if (!stu2quest)
+                        {
+                            Student2.SetValue(Canvas.LeftProperty, secondX);
+                            Student1.SetValue(Canvas.LeftProperty, firstX);
+                        }
                         stu1quest = true;
                         Student1Back.Opacity = 1.0;
                     }
@@ -172,9 +175,12 @@ namespace FinalProjectV1
 
                         if (rightHandRaised(sk2) && !stu2quest)
                         {
-                            Student2.SetValue(Canvas.LeftProperty, firstX);
-                            Student1.SetValue(Canvas.LeftProperty, secondX);
-                            stu1quest = true;
+                            if (!stu1quest)
+                            {
+                                Student2.SetValue(Canvas.LeftProperty, firstX);
+                                Student1.SetValue(Canvas.LeftProperty, secondX);
+                            }
+                            stu2quest = true;
                             Student2Back.Opacity = 1.0;
                         }
                         else if (leftHandRaised(sk2) && stu2quest)
@@ -184,7 +190,7 @@ namespace FinalProjectV1
                                 Student2.SetValue(Canvas.LeftProperty, secondX);
                                 Student1.SetValue(Canvas.LeftProperty, firstX);
                             }
-                            stu1quest = false;
+                            stu2quest = false;
                             Student2Back.Opacity = 0.0;
                         }
 
