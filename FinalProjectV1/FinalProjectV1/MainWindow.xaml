@@ -78,7 +78,7 @@
 
             </RichTextBox>
             
-            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="100" Height="50" Content="Continue" Click="c1_Click" FontSize="18"></Button>
+            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="18"></Button>
             
         </Canvas>
 
