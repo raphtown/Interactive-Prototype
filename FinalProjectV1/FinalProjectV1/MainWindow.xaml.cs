@@ -155,7 +155,7 @@ namespace FinalProjectV1
                         Student1Back.Opacity = 1.0;
                         Student1Question.Visibility = Visibility.Visible;
                     }
-                    else if (leftHandRaised(sk) && stu1quest)
+                    else if (rightHandRaised(sk) && stu1quest)
                     {
                         if (stu2quest)
                         {
@@ -186,7 +186,7 @@ namespace FinalProjectV1
                             Student2Back.Opacity = 1.0;
                             Student2Question.Visibility = Visibility.Visible;
                         }
-                        else if (leftHandRaised(sk2) && stu2quest)
+                        else if (rightHandRaised(sk2) && stu2quest)
                         {
                             if (stu1quest)
                             {
