@@ -71,9 +71,11 @@ namespace FinalProjectV1
         const int waitScreen = 2;
         const int ohScreen = 3;
         const double firstX = 10.0;
-        const double secondX = 220.0;
+        const double secondX = 295.0;
         bool stu1quest = false;
         bool stu2quest = false;
+        int framecount = 0;
+        const int maxCount = 20;
         #endregion
 
         //
@@ -131,6 +133,7 @@ namespace FinalProjectV1
         Boolean gotHeadshot = false;
         void newSensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
+            framecount--;
             if (closing)
             {
                 return;
@@ -146,13 +149,19 @@ namespace FinalProjectV1
                     Student1.Visibility = Visibility.Visible;
                     if (rightHandRaised(sk) && !stu1quest)
                     {
-                        Student2.SetValue(Canvas.LeftProperty, secondX);
-                        Student1.SetValue(Canvas.LeftProperty, firstX);
+                        framecount = maxCount;
+                        if (!stu2quest)
+                        {
+                            Student2.SetValue(Canvas.LeftProperty, secondX);
+                            Student1.SetValue(Canvas.LeftProperty, firstX);
+                        }
                         stu1quest = true;
                         Student1Back.Opacity = 1.0;
+                        Student1Question.Visibility = Visibility.Visible;
                     }
-                    else if (leftHandRaised(sk) && stu1quest)
+                    else if (rightHandRaised(sk) && stu1quest)
                     {
+                        framecount = maxCount;
                         if (stu2quest)
                         {
                             Student2.SetValue(Canvas.LeftProperty, firstX);
@@ -160,6 +169,7 @@ namespace FinalProjectV1
                         }
                         stu1quest = false;
                         Student1Back.Opacity = 0.0;
+                        Student1Question.Visibility = Visibility.Collapsed;
                     }
                     double z = sk.Joints[JointType.Head].Position.Z;
                     if (Student1Pic.Source == null&&z>1.6&&z<1.8)
@@ -172,20 +182,27 @@ namespace FinalProjectV1
 
                         if (rightHandRaised(sk2) && !stu2quest)
                         {
-                            Student2.SetValue(Canvas.LeftProperty, firstX);
-                            Student1.SetValue(Canvas.LeftProperty, secondX);
-                            stu1quest = true;
-                            Student1Back.Opacity = 1.0;
+                            framecount = maxCount;
+                            if (!stu1quest)
+                            {
+                                Student2.SetValue(Canvas.LeftProperty, firstX);
+                                Student1.SetValue(Canvas.LeftProperty, secondX);
+                            }
+                            stu2quest = true;
+                            Student2Back.Opacity = 1.0;
+                            Student2Question.Visibility = Visibility.Visible;
                         }
-                        else if (leftHandRaised(sk2) && stu2quest)
+                        else if (rightHandRaised(sk2) && stu2quest)
                         {
+                            framecount = maxCount;
                             if (stu1quest)
                             {
                                 Student2.SetValue(Canvas.LeftProperty, secondX);
                                 Student1.SetValue(Canvas.LeftProperty, firstX);
                             }
-                            stu1quest = false;
-                            Student1Back.Opacity = 0.0;
+                            stu2quest = false;
+                            Student2Back.Opacity = 0.0;
+                            Student2Question.Visibility = Visibility.Collapsed;
                         }
 
                         Student2.Visibility = Visibility.Visible;
@@ -227,7 +244,7 @@ namespace FinalProjectV1
 
         private Boolean rightHandRaised(Skeleton sk)
         {
-            return sk.Joints[JointType.HandRight].Position.Y>sk.Joints[JointType.Head].Position.Y;
+            return sk.Joints[JointType.HandRight].Position.Y>sk.Joints[JointType.Head].Position.Y&&(framecount<=0);
         }
 
         private ImageSource getHeadshot(Skeleton sk, ColorImageFrame colorFrame)
@@ -353,10 +370,14 @@ namespace FinalProjectV1
         private void MoveMousePosition(Skeleton sk)
         {
             Joint leftHand = sk.Joints[JointType.HandLeft];
-            Joint scaledLeftHand = leftHand.ScaleTo((int)this.Width, (int)this.Height, 0.25f, 0.25f);
-
+            Joint hip = sk.Joints[JointType.HipCenter];
+            Joint ls = sk.Joints[JointType.ShoulderLeft];
+            Joint scaledLeftHand = leftHand.ScaleTo((int)this.Width, (int)this.Height, hip.Position.X - ls.Position.X, 0.25f);
+            //Joint scaledHip = hip.ScaleTo((int)this.Width, (int)this.Height, 0.25f, 0.25f);
             double x = scaledLeftHand.Position.X;
             double y = scaledLeftHand.Position.Y;
+            //double a = scaledHip.Position.X;
+            //double b = scaledHip.Position.Y;
             System.Windows.Point scnPt = this.PointToScreen(new System.Windows.Point(x, y));
 
             //Debug.WriteLine("   x=  " + x+ "   y=  " + y);
@@ -443,6 +464,7 @@ namespace FinalProjectV1
             initialTimeSelection.Visibility = Visibility.Visible;
             currentPage = timeSelect;
             t.Start(); // start the timer
+            setCurrentFocus(null);
         }
 
         private void startHourPlus_Click(object sender, RoutedEventArgs e)
@@ -469,7 +491,7 @@ namespace FinalProjectV1
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            sMin = sMin + 1;
+            sMin = sMin + 5;
             startMin.Text = (sMin % 60).ToString();
             eMin = sMin;
             endMin.Text = startMin.Text;
@@ -537,6 +559,7 @@ namespace FinalProjectV1
                     startOH.Interval = TimeSpan.FromMilliseconds(calTime());
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
+                    setCurrentFocus(null);
                }
                //t.Start();
             }
@@ -628,6 +651,7 @@ namespace FinalProjectV1
             beforeStart.Visibility = Visibility.Collapsed;
             OHStarted.Visibility = Visibility.Visible;
             currentPage = ohScreen;
+            setCurrentFocus(null);
         }
             
 
@@ -662,6 +686,8 @@ namespace FinalProjectV1
         {
             setCurrentFocus((Button)sender);
         }
+
+        
         
     }
 }

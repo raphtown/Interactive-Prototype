@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Coding4Fun.Kinect.Wpf">
-      <HintPath>..\..\..\..\Interactive-Prototype\FinalProjectV1\FinalProjectV1\bin\Debug\Coding4Fun.Kinect.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Users\chenkai Gao\Documents\Visual Studio 2010\Projects\FinalProjectV1\FinalProjectV1\bin\Debug\Coding4Fun.Kinect.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Kinect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -109,6 +109,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="question.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
