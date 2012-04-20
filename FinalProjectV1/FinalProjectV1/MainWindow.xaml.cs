@@ -370,10 +370,14 @@ namespace FinalProjectV1
         private void MoveMousePosition(Skeleton sk)
         {
             Joint leftHand = sk.Joints[JointType.HandLeft];
-            Joint scaledLeftHand = leftHand.ScaleTo((int)this.Width, (int)this.Height, 0.25f, 0.25f);
-
+            Joint hip = sk.Joints[JointType.HipCenter];
+            Joint ls = sk.Joints[JointType.ShoulderLeft];
+            Joint scaledLeftHand = leftHand.ScaleTo((int)this.Width, (int)this.Height, hip.Position.X - ls.Position.X, 0.25f);
+            //Joint scaledHip = hip.ScaleTo((int)this.Width, (int)this.Height, 0.25f, 0.25f);
             double x = scaledLeftHand.Position.X;
             double y = scaledLeftHand.Position.Y;
+            //double a = scaledHip.Position.X;
+            //double b = scaledHip.Position.Y;
             System.Windows.Point scnPt = this.PointToScreen(new System.Windows.Point(x, y));
 
             //Debug.WriteLine("   x=  " + x+ "   y=  " + y);
