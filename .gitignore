@@ -1,2 +1,16 @@
 *.suo
-FinalProjectV1/FinalProjectV1/bin/Debug/FinalProjectV1.exe
+FinalProjectV1.exe
+FinalProjectV1.pdb
+Microsoft.Samples.Kinect.WpfViewers.dll
+Microsoft.Samples.Kinect.WpfViewers.pdb
+DesignTimeResolveAssemblyReferencesInput.cache
+FinalProjectV1_MarkupCompile.cache
+FinalProjectV1_MarkupCompile.i.cache
+ResolveAssemblyReference.cache
+DesignTimeResolveAssemblyReferencesInput.cache
+DesignTimeResolveAssemblyReferences.cache
+*.tlog
+Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.cache
+Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.i.cache
+Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.i.lref
+Microsoft.Samples.Kinect.WpfViewers_MarkupCompile.lref
