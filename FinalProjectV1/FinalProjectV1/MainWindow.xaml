@@ -5,6 +5,7 @@
     <Window.Background>
         <ImageBrush ImageSource="./background.jpg" Stretch="Fill"/>
     </Window.Background>
+    
     <Canvas Height="720" Width="1150" Name="background" HorizontalAlignment="Stretch">
         
         <my:KinectSensorChooser HorizontalAlignment="Left" Margin="418,144,0,0" Name="kinectSensorChooser1" VerticalAlignment="Top" Width="328" />
@@ -45,8 +46,21 @@
 
             <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="18" MouseEnter="allMouseEnter"></Button>
         </Canvas>
-
+        <Canvas Height="700" Width="1150" Name="timeSelector" HorizontalAlignment="Stretch" Visibility="Collapsed">
+            <ListBox HorizontalContentAlignment="Stretch" Canvas.Left="400" Canvas.Top="68" Width="406"  Height="565" HorizontalAlignment="Stretch">
+                <Button Name="upButton" Height="40" Content="^" Click="upButton_Click"></Button>
+                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="downButton" Height="40" Content="v" Click="downButton_Click"></Button>
+            </ListBox>
+        </Canvas>
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
+            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+
             <!--this screen appears everytime where the program starts, and after 15 seconds or user press continue, the starting canvas will appear-->
             <!--this is a gesture help screen too-->
             <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
@@ -181,9 +195,8 @@
         </Canvas>                                                    
 
 
-        <Canvas Height="700" Width="1150" Name="ended" HorizontalAlignment="Stretch" Visibility="Collapsed">
-            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
-            <!--don't know what to put here-->
+        <Canvas Height="700" Width="1150" Name="ended" HorizontalAlignment="Stretch" Visibility="Collapsed" OpacityMask="Black">
+                <!--don't know what to put here-->
             
         </Canvas>
     </Canvas>

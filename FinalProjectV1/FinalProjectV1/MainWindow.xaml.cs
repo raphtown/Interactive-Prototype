@@ -66,17 +66,31 @@ namespace FinalProjectV1
         DispatcherTimer startOH = new DispatcherTimer();
         private Button currentFocus = null;
         ArrayList allRecognizers = new ArrayList();
+        Button[] timeSelectorButtons = new Button[6];
         const int helpPage = 0;
         const int timeSelect = 1;
         const int waitScreen = 2;
         const int ohScreen = 3;
+        const int timeSelectDetail = 4;
+
+
+        
+        // Hmmmmm...  Don't mess with time selection I guess...  If you feel up for it make this better
+        int selectorType = 0;
+        const int HOUR = 6;
+        const int MINUTE = 30;
+
+        bool start;
+
         const double firstX = 10.0;
         const double secondX = 295.0;
         bool stu1quest = false;
         bool stu2quest = false;
         int framecount = 0;
         const int maxCount = 20;
+        bool hours = false;
         #endregion
+
 
         //
 
@@ -91,6 +105,12 @@ namespace FinalProjectV1
             eHour = int.Parse(endHour.Text);
             eMin = int.Parse(endMin.Text);
             allRecognizers.Add(new RightHandPushRecognizer());
+            timeSelectorButtons[0] = l1Button ;
+            timeSelectorButtons[1] = l2Button;
+            timeSelectorButtons[2] = l3Button;
+            timeSelectorButtons[3] = l4Button;
+            timeSelectorButtons[4] = l5Button;
+            timeSelectorButtons[5] = l6Button;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -349,7 +369,6 @@ namespace FinalProjectV1
             return h.ToString() + ":" + m.ToString() + ":" + s.ToString();
         }
 
-
         private string dis_time_before_OH()
         {
             int m = sMin-1-DateTime.Now.Minute;
@@ -386,15 +405,11 @@ namespace FinalProjectV1
             System.Windows.Forms.Cursor.Position = cursorPosition;
         }
 
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             closing = true;
             stopKinect(kinectSensorChooser1.Kinect);
         }
-
-
-
 
         void stopKinect(KinectSensor sensor)
         {
@@ -415,7 +430,6 @@ namespace FinalProjectV1
                 }
             }
         }
-
 
         Skeleton getFirstSke(AllFramesReadyEventArgs e)
         {
@@ -460,6 +474,7 @@ namespace FinalProjectV1
 
         private void c1_Click(object sender, RoutedEventArgs e)
         {
+            
             initialPage.Visibility = Visibility.Collapsed;
             initialTimeSelection.Visibility = Visibility.Visible;
             currentPage = timeSelect;
@@ -469,12 +484,15 @@ namespace FinalProjectV1
 
         private void startHourPlus_Click(object sender, RoutedEventArgs e)
         {
+
             t.Stop();
-            //update textbox
-            startHour.Text = ((++sHour) % 24).ToString();
-            eHour = sHour + 1;
-            endHour.Text = (eHour % 24).ToString();
-            t.Start();
+            initialTimeSelection.Visibility = Visibility.Collapsed;
+            timeSelector.Visibility = Visibility.Visible;
+            setTimes(HOUR);
+            start = true;
+            currentPage = timeSelectDetail;
+
+           
         }
 
         private void startHourMin_Click(object sender, RoutedEventArgs e)
@@ -491,11 +509,17 @@ namespace FinalProjectV1
         private void startMinPlus_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            sMin = sMin + 5;
-            startMin.Text = (sMin % 60).ToString();
-            eMin = sMin;
-            endMin.Text = startMin.Text;
-            t.Start();
+            initialTimeSelection.Visibility = Visibility.Collapsed;
+            timeSelector.Visibility = Visibility.Visible;
+            setTimes(MINUTE);
+            start = true;
+            currentPage = timeSelectDetail;
+         //   t.Stop();
+         //   sMin = sMin + 5;
+         //   startMin.Text = (sMin % 60).ToString();
+         //   eMin = sMin;
+         //   endMin.Text = startMin.Text;
+         //   t.Start();
         }
 
         private void startMinMin_Click(object sender, RoutedEventArgs e)
@@ -682,12 +706,81 @@ namespace FinalProjectV1
             t.Start();
         }
 
+
+
         private void allMouseEnter(object sender, MouseEventArgs e)
         {
             setCurrentFocus((Button)sender);
         }
 
-        
+        private void upButton_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < timeSelectorButtons.Length; i++)
+            {
+                timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + selectorType) % (selectorType * 2);
+            }
+        }
+
+        private void lButton_Click(object sender, RoutedEventArgs e)
+        {
+            initialTimeSelection.Visibility = Visibility.Visible;
+            timeSelector.Visibility = Visibility.Collapsed;
+            currentPage = timeSelect;
+            int result = int.Parse(((Button)sender).Content.ToString());
+            if (selectorType == HOUR)
+            {
+                if (start)
+                {
+                    sHour = result;
+                    startHour.Text = ((sHour) % 24).ToString();
+                    eHour = sHour + 1;
+                    endHour.Text = (eHour % 24).ToString();
+                }
+                else
+                {
+                    eHour = result;
+                    endHour.Text = (eHour % 24).ToString();
+                }
+            }
+            else
+            {
+                if (start)
+                {
+                  
+
+                    sMin = result;
+                    startMin.Text = (sMin % 60).ToString();
+                    eMin = sMin;
+                    endMin.Text = startMin.Text;
+                }
+                else
+                {
+                    eMin = result;
+                    endMin.Text = eMin.ToString();
+                }
+            }
+            t.Start();
+        }
+
+        public void setTimes(int selectorType)
+        {
+            this.selectorType = selectorType;
+            for (int i = 0; i < timeSelectorButtons.Length; i++)
+            {
+                // Terrible terrible
+                timeSelectorButtons[i].Content = (selectorType * i) / 6;
+            }
+        }
+
+        private void downButton_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < timeSelectorButtons.Length; i++)
+            {
+                timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + selectorType) % (selectorType * 2);
+            }
+        }
+
+
         
     }
 }
