@@ -46,18 +46,6 @@
 
             <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="18" MouseEnter="allMouseEnter"></Button>
         </Canvas>
-        <Canvas Height="700" Width="1150" Name="timeSelector" HorizontalAlignment="Stretch" Visibility="Collapsed">
-            <ListBox HorizontalContentAlignment="Stretch" Canvas.Left="400" Canvas.Top="27" Width="406"  Height="645" HorizontalAlignment="Stretch">
-                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click"></Button>
-                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click"></Button>
-            </ListBox>
-        </Canvas>
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
 
@@ -126,6 +114,8 @@
             <TextBox Canvas.Left="475" Canvas.Top="180" Width="200" Height="30" FontSize="20" Name="disTimeBeforeStart"></TextBox>
 
             <Button Canvas.Left="420" Canvas.Top="230" Width="300" Height="100" Content="Change time" Name="ct" FontSize="22" Click="ct_Click" MouseEnter="allMouseEnter"></Button>
+            <Button Canvas.Left="420" Canvas.Top="380" Width="300" Height="100" Content="Start Office Hours NOW" Name="startOHNow" FontSize="22"  MouseEnter="allMouseEnter" Click="startOHNow_Click"></Button>
+
             <!--one display the time left until the office hour starts, one button to reset the time, (another one to recalibrate**not considered this time**)-->
             <!--a help button-->
         </Canvas>
@@ -178,8 +168,20 @@
             <TextBox Canvas.Right="60" Canvas.Bottom="200" Width="220" Height="50" FontSize="20" Name="disTimeOver" ></TextBox>
             <Button Canvas.Right="250" Canvas.Bottom="120" Width="150" Height="75" Content="-5" Name="min5Btn" Click="min5_Click" FontSize="34" MouseEnter="allMouseEnter"></Button>
             <Button Canvas.Right="50" Canvas.Bottom="120" Width="150" Height="75" Content="+5" Name="plus5Btn" Click="plus5_Click" FontSize="34" MouseEnter="allMouseEnter"></Button>
-        </Canvas>                                                    
-
+        </Canvas>
+        <Canvas Height="700" Width="1150" Name="timeSelector" HorizontalAlignment="Stretch" Visibility="Collapsed">
+            <Label VerticalContentAlignment="Center" Canvas.Left="25" Canvas.Top="300" Width="325" Height="100" Content="Start Minutes" FontSize="50" Name="timeSelectorLabel"></Label>
+            <ListBox HorizontalContentAlignment="Stretch" Canvas.Left="375" Canvas.Top="27" Width="400"  Height="645" HorizontalAlignment="Stretch">
+                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click"></Button>
+                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" />
+                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click"></Button>
+            </ListBox>
+        </Canvas>
 
         <Canvas Height="700" Width="1150" Name="ended" HorizontalAlignment="Stretch" Visibility="Collapsed" OpacityMask="Black">
                 <!--don't know what to put here-->

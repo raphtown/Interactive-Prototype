@@ -58,29 +58,25 @@ namespace FinalProjectV1
         const int skeletonCount = 6;
         Skeleton[] allSkeleton = new Skeleton[skeletonCount];
         DispatcherTimer t = new DispatcherTimer();
-        //a variable keep track which page we are on right now, so that when we switch to the timeouthelp page, we know that when we hit continue, when page should be visible
-        int currentPage;  //define: initialTimeSelection page: 1, beforeOH: 2, 
-        // time representation
+
+        // Page values
+        const int HELP_PAGE = 0;
+        const int TIME_SELECT = 1;
+        const int WAIT_SCREEN = 2;
+        const int OH_SCREEN = 3;
+        const int TIME_SELECT_DETAIL = 4;
+        int previousPage; // Page we were on previously
+        int currentPage;  // Page which we are currently on
+
         int sHour, sMin, eHour, eMin;
         System.Drawing.Point cursorPosition = new System.Drawing.Point(0, 0);//cursor control
         DispatcherTimer startOH = new DispatcherTimer();
         private Button currentFocus = null;
         ArrayList allRecognizers = new ArrayList();
         Button[] timeSelectorButtons = new Button[6];
-        const int helpPage = 0;
-        const int timeSelect = 1;
-        const int waitScreen = 2;
-        const int ohScreen = 3;
-        const int timeSelectDetail = 4;
 
 
-        
-        // Time selection indicator
-        int selectorType = 0;
-        const int HOUR = 0;
-        const int MINUTE = 1;
-
-        bool start;
+        Dictionary<int, Canvas> mappings = new Dictionary<int, Canvas>();
 
         const double firstX = 10.0;
         const double secondX = 295.0;
@@ -88,7 +84,6 @@ namespace FinalProjectV1
         bool stu2quest = false;
         int framecount = 0;
         const int maxCount = 20;
-        bool hours = false;
         #endregion
 
 
@@ -99,13 +94,20 @@ namespace FinalProjectV1
             InitializeComponent();
             t.Interval = TimeSpan.FromMilliseconds(30000);
             t.Tick += new EventHandler(dis_help);
-            currentPage = helpPage;
+            currentPage = HELP_PAGE;
+            previousPage = currentPage;
             sHour = 11;
             sMin = 0;
             eHour = 12;
             eMin = 0;
             syncLabels();
             allRecognizers.Add(new RightHandPushRecognizer());
+            mappings.Add(HELP_PAGE, initialPage);
+            mappings.Add(TIME_SELECT, initialTimeSelection);
+            mappings.Add(WAIT_SCREEN, beforeStart);
+            mappings.Add(OH_SCREEN, OHStarted);
+            mappings.Add(TIME_SELECT_DETAIL, timeSelector);
+
             timeSelectorButtons[0] = l1Button ;
             timeSelectorButtons[1] = l2Button;
             timeSelectorButtons[2] = l3Button;
@@ -165,7 +167,7 @@ namespace FinalProjectV1
             
             if (sk != null)
             {
-                if (currentPage == ohScreen)
+                if (currentPage == OH_SCREEN)
                 {
                     Student1.Visibility = Visibility.Visible;
                     if (rightHandRaised(sk) && !stu1quest)
@@ -247,11 +249,11 @@ namespace FinalProjectV1
                 RecognizeGesture(normalizedJointData);
             }
 
-            if (currentPage == waitScreen)
+            if (currentPage == WAIT_SCREEN)
             {
                 disTimeBeforeStart.Text = dis_time_before_OH();
             }
-            else if (currentPage == ohScreen)
+            else if (currentPage == OH_SCREEN)
             {
                 disTimeOver.Text = dis_time_left();
             }
@@ -475,12 +477,9 @@ namespace FinalProjectV1
 
         private void c1_Click(object sender, RoutedEventArgs e)
         {
-            
-            initialPage.Visibility = Visibility.Collapsed;
-            initialTimeSelection.Visibility = Visibility.Visible;
-            currentPage = timeSelect;
+
+            transitionToPage(TIME_SELECT);
             t.Start(); // start the timer
-            setCurrentFocus(null);
         }
 
         private void c2_Click(object sender, RoutedEventArgs e)
@@ -493,13 +492,10 @@ namespace FinalProjectV1
                if (remaing < 0) MessageBox.Show("Past time selction!");
                else
                {
-                    initialTimeSelection.Visibility = Visibility.Collapsed;
-                    beforeStart.Visibility = Visibility.Visible;
-                    currentPage = waitScreen;
+                   transitionToPage(WAIT_SCREEN);
                     startOH.Interval = TimeSpan.FromMilliseconds(calTime());
                     startOH.Tick += new EventHandler(startedOH);
                     startOH.Start();
-                    setCurrentFocus(null);
                }
                //t.Start();
             }
@@ -568,57 +564,32 @@ namespace FinalProjectV1
         private void dis_help(object sender, EventArgs e)
         {
             //checking current page 
-            if (currentPage == timeSelect)
+            if (currentPage == TIME_SELECT)
             {
-                initialTimeSelection.Visibility = Visibility.Collapsed;
-                helpForTimeout.Visibility = Visibility.Visible;
+                transitionToPage(HELP_PAGE);
             }
-           /* else if (currentPage == waitScreen)
-            {
-                beforeStart.Visibility = Visibility.Collapsed;
-                helpForTimeout.Visibility = Visibility.Visible;
-            }*/
             DispatcherTimer at = (DispatcherTimer)sender;
             at.Stop();
         }
 
-        //
         private void startedOH(object sender, EventArgs e)
         {
             DispatcherTimer at = (DispatcherTimer)sender;
             at.Stop();
             t.Stop();
-            beforeStart.Visibility = Visibility.Collapsed;
-            OHStarted.Visibility = Visibility.Visible;
-            currentPage = ohScreen;
-            setCurrentFocus(null);
+            transitionToPage(OH_SCREEN);    
         }
-            
-
 
         private void cSpecial_Click(object sender, RoutedEventArgs e)
         {
-            if (currentPage == timeSelect)
-            {
-                helpForTimeout.Visibility = Visibility.Collapsed;
-                initialTimeSelection.Visibility = Visibility.Visible;
-                t.Start();
-            }
-            else if (currentPage == waitScreen)
-            {
-                helpForTimeout.Visibility = Visibility.Collapsed;
-                beforeStart.Visibility = Visibility.Visible;
-                t.Start();
-            }
-
+            transitionToPage(previousPage);
+             t.Start();
         }
 
         private void ct_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
-            beforeStart.Visibility = Visibility.Collapsed;
-            initialTimeSelection.Visibility = Visibility.Visible;
-            currentPage = timeSelect;
+            transitionToPage(TIME_SELECT);
             t.Start();
         }
 
@@ -695,9 +666,7 @@ namespace FinalProjectV1
                 }
             }
 
-            initialTimeSelection.Visibility = Visibility.Visible;
-            timeSelector.Visibility = Visibility.Collapsed;
-            currentPage = timeSelect;
+            transitionToPage(TIME_SELECT);
             syncLabels();
             t.Start();
         }
@@ -707,6 +676,14 @@ namespace FinalProjectV1
 
         #region timeSelectionMainScreenFunctionality
         // Main time selection window, displaying both start and end times
+
+        // Indicates Type of Time Selection
+        int selectorType = 0;
+        const int HOUR = 0;
+        const int MINUTE = 1;
+
+        bool start;
+
 
         private void endHour_Click(object sender, RoutedEventArgs e)
         {
@@ -730,38 +707,66 @@ namespace FinalProjectV1
 
         private void launchTimeSelector(int selectorType, bool start)
         {
-            this.selectorType = selectorType;
             t.Stop();
-            initialTimeSelection.Visibility = Visibility.Collapsed;
-            timeSelector.Visibility = Visibility.Visible;
-            initializeSelector(selectorType);
-            this.start = start;
-            currentPage = timeSelectDetail;
+            initializeSelector(selectorType, start);
+            transitionToPage(TIME_SELECT_DETAIL);
         }
 
-        public void initializeSelector(int selectorType)
+        public void initializeSelector(int selectorType, bool start)
         {
+            this.start = start;
             this.selectorType = selectorType;
             for (int i = 0; i < timeSelectorButtons.Length; i++)
             {
                 if (selectorType == HOUR)
                 {
                     timeSelectorButtons[i].Content = i;
+                    if (start) timeSelectorLabel.Content = "Start Hour";
+                    else timeSelectorLabel.Content = "End Hour";
                 }
                 else
                 {
                     timeSelectorButtons[i].Content = 5 * i;
+                    if (start) timeSelectorLabel.Content = "Start Minute";
+                    else timeSelectorLabel.Content = "End Minute";
                 }
 
             }
         }
         #endregion
 
-        // Resync labels with our own set values
+        // Resync labels with our own set values (NOTE: if we actually learned C# this could probably be done via data binding)
         private void syncLabels()
         {
             startTime.Text = sHour + ":" + (sMin < 10 ? "0" : "") + sMin;
             endTime.Text = eHour + ":" + (eMin < 10 ? "0" : "") + eMin;
+        }
+
+        // Switches to a different page.  Either you disable previous page, or hide it entirely
+        private void transitionToPage(int page, bool hidePreviousPage = false)
+        {
+            previousPage = currentPage;
+            currentPage = page;
+            if (hidePreviousPage)
+            {
+                mappings[previousPage].IsEnabled = false;
+            }
+            else
+            {
+                mappings[previousPage].Visibility = Visibility.Collapsed;
+            }
+            mappings[currentPage].IsEnabled = true;
+            mappings[currentPage].Visibility = Visibility.Visible;
+            
+            setCurrentFocus(null);
+        }
+
+        // Just a shortcut to be able to start Office hours right away
+        private void startOHNow_Click(object sender, RoutedEventArgs e)
+        {
+            startOH.Stop();
+            t.Stop();    
+            transitionToPage(OH_SCREEN);   
         }
     }
 }
