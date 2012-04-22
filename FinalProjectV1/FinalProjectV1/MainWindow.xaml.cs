@@ -75,10 +75,10 @@ namespace FinalProjectV1
 
 
         
-        // Hmmmmm...  Don't mess with time selection I guess...  If you feel up for it make this better
+        // Time selection indicator
         int selectorType = 0;
-        const int HOUR = 6;
-        const int MINUTE = 30;
+        const int HOUR = 0;
+        const int MINUTE = 1;
 
         bool start;
 
@@ -767,8 +767,15 @@ namespace FinalProjectV1
             this.selectorType = selectorType;
             for (int i = 0; i < timeSelectorButtons.Length; i++)
             {
-                // Terrible terrible
-                timeSelectorButtons[i].Content = (selectorType * i) / 6;
+                if (selectorType == HOUR)
+                {
+                    timeSelectorButtons[i].Content = i;
+                }
+                else
+                {
+                    timeSelectorButtons[i].Content = 5 * i;
+                }
+               
             }
         }
 
@@ -776,7 +783,15 @@ namespace FinalProjectV1
         {
             for (int i = 0; i < timeSelectorButtons.Length; i++)
             {
-                timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + selectorType) % (selectorType * 2);
+                if (selectorType == HOUR)
+                {
+                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 6) % 24;
+                }
+                else
+                {
+                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 30) % 60;
+                }
+                
             }
         }
 
