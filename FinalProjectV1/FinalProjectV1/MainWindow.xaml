@@ -172,14 +172,14 @@
         <Canvas Height="700" Width="1150" Name="timeSelector" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <Label VerticalContentAlignment="Center" Canvas.Left="25" Canvas.Top="300" Width="325" Height="100" Content="Start Minutes" FontSize="50" Name="timeSelectorLabel"></Label>
             <ListBox HorizontalContentAlignment="Stretch" Canvas.Left="375" Canvas.Top="27" Width="400"  Height="645" HorizontalAlignment="Stretch">
-                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click"></Button>
-                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" />
-                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click"></Button>
+                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click" MouseEnter="allMouseEnter"></Button>
+                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
+                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
+                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
+                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
+                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
+                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
+                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click" MouseEnter="allMouseEnter"></Button>
             </ListBox>
         </Canvas>
 
