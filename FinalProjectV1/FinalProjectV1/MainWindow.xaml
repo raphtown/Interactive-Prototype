@@ -100,10 +100,9 @@
             <TextBox Canvas.Left="450" Canvas.Top="425" Width="250" Height="80" Text="13" FontSize="50" TextAlignment="Center" Name="endTime"></TextBox>
             <Button Name="endHour" Canvas.Left="75" Canvas.Top="425" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseEnter="allMouseEnter" Click="endHour_Click"></Button>
             <Button Name="endMin" Canvas.Left="775" Canvas.Top="425" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseEnter="allMouseEnter" Click="endMin_Click"></Button>
-
+            <Label Name="warningMsg"  Height="170" Width="370" Canvas.Right="10" Canvas.Bottom="20" Content="" FontSize="40" HorizontalContentAlignment="Center"></Label>
 
             <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c2_Click" FontSize="18" MouseEnter="allMouseEnter"></Button>
-
         </Canvas>
         
 
