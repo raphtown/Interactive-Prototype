@@ -100,10 +100,11 @@ namespace FinalProjectV1
             t.Interval = TimeSpan.FromMilliseconds(30000);
             t.Tick += new EventHandler(dis_help);
             currentPage = helpPage;
-            sHour = int.Parse(startHour.Text);
-            sMin = int.Parse(startMin.Text);
-            eHour = int.Parse(endHour.Text);
-            eMin = int.Parse(endMin.Text);
+            sHour = 11;
+            sMin = 0;
+            eHour = 12;
+            eMin = 0;
+            syncLabels();
             allRecognizers.Add(new RightHandPushRecognizer());
             timeSelectorButtons[0] = l1Button ;
             timeSelectorButtons[1] = l2Button;
@@ -482,91 +483,6 @@ namespace FinalProjectV1
             setCurrentFocus(null);
         }
 
-        private void startHourPlus_Click(object sender, RoutedEventArgs e)
-        {
-
-            t.Stop();
-            initialTimeSelection.Visibility = Visibility.Collapsed;
-            timeSelector.Visibility = Visibility.Visible;
-            setTimes(HOUR);
-            start = true;
-            currentPage = timeSelectDetail;
-
-           
-        }
-
-        private void startHourMin_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            --sHour; 
-            if (sHour < 0) sHour = sHour + 24;
-            startHour.Text = (sHour % 24).ToString();
-            eHour = sHour + 1;
-            endHour.Text = (eHour % 24).ToString();
-            t.Start();
-        }
-
-        private void startMinPlus_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            initialTimeSelection.Visibility = Visibility.Collapsed;
-            timeSelector.Visibility = Visibility.Visible;
-            setTimes(MINUTE);
-            start = true;
-            currentPage = timeSelectDetail;
-         //   t.Stop();
-         //   sMin = sMin + 5;
-         //   startMin.Text = (sMin % 60).ToString();
-         //   eMin = sMin;
-         //   endMin.Text = startMin.Text;
-         //   t.Start();
-        }
-
-        private void startMinMin_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            sMin = sMin - 5;
-            if (sMin < 0) sMin = sMin + 60;
-            startMin.Text = (sMin % 60).ToString();
-            eMin = sMin;
-            endMin.Text = startMin.Text;
-            t.Start();
-        }
-
-        private void endHourPlus_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            //update textbox
-            endHour.Text = (++eHour % 24).ToString();
-            t.Start();
-        }
-
-        private void endHourMin_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            --eHour;
-            if (eHour < 0) eHour = eHour + 24;
-            endHour.Text = (eHour % 24).ToString();
-            t.Start();
-        }
-
-        private void endMinPlus_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            eMin = eMin + 5;
-            endMin.Text = ((eMin) % 60).ToString();
-            t.Start();
-        }
-
-        private void endMinMin_Click(object sender, RoutedEventArgs e)
-        {
-            t.Stop();
-            eMin = eMin - 5;
-            if (eMin < 0) eMin = eMin + 60;
-            endMin.Text = (eMin % 60).ToString();
-            t.Start();
-        }
-
         private void c2_Click(object sender, RoutedEventArgs e)
         {
             t.Stop();
@@ -707,78 +623,32 @@ namespace FinalProjectV1
         }
 
 
-
         private void allMouseEnter(object sender, MouseEventArgs e)
         {
             setCurrentFocus((Button)sender);
         }
 
+        #region timeSelectionDetailFunctionality
+        // Detail view of time selection.  User scrolls through available times to choose from using up and down buttons, and selects appropriate time
+
+        // Show next screenful of available times to select
         private void upButton_Click(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < timeSelectorButtons.Length; i++)
             {
-                timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + selectorType) % (selectorType * 2);
-            }
-        }
-
-        private void lButton_Click(object sender, RoutedEventArgs e)
-        {
-            initialTimeSelection.Visibility = Visibility.Visible;
-            timeSelector.Visibility = Visibility.Collapsed;
-            currentPage = timeSelect;
-            int result = int.Parse(((Button)sender).Content.ToString());
-            if (selectorType == HOUR)
-            {
-                if (start)
-                {
-                    sHour = result;
-                    startHour.Text = ((sHour) % 24).ToString();
-                    eHour = sHour + 1;
-                    endHour.Text = (eHour % 24).ToString();
-                }
-                else
-                {
-                    eHour = result;
-                    endHour.Text = (eHour % 24).ToString();
-                }
-            }
-            else
-            {
-                if (start)
-                {
-                  
-
-                    sMin = result;
-                    startMin.Text = (sMin % 60).ToString();
-                    eMin = sMin;
-                    endMin.Text = startMin.Text;
-                }
-                else
-                {
-                    eMin = result;
-                    endMin.Text = eMin.ToString();
-                }
-            }
-            t.Start();
-        }
-
-        public void setTimes(int selectorType)
-        {
-            this.selectorType = selectorType;
-            for (int i = 0; i < timeSelectorButtons.Length; i++)
-            {
                 if (selectorType == HOUR)
                 {
-                    timeSelectorButtons[i].Content = i;
+                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 18) % 24;
                 }
                 else
                 {
-                    timeSelectorButtons[i].Content = 5 * i;
+                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 30) % 60;
                 }
-               
+
             }
         }
 
+        // Show next screenful of available times to select
         private void downButton_Click(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < timeSelectorButtons.Length; i++)
@@ -791,11 +661,107 @@ namespace FinalProjectV1
                 {
                     timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 30) % 60;
                 }
-                
+
             }
         }
 
+        // User selected a time: update times and transition back to main screen
+        private void lButton_Click(object sender, RoutedEventArgs e)
+        {
+            int result = int.Parse(((Button)sender).Content.ToString());
+            if (selectorType == HOUR)
+            {
+                if (start)
+                {
+                    sHour = result;
+                    eHour = sHour + 1;
+                }
+                else
+                {
+                    eHour = result;
+                }
+            }
+            else
+            {
+                if (start)
+                {
+                  
+                    sMin = result;
+                    eMin = sMin;
+                }
+                else
+                {
+                    eMin = result;
+                }
+            }
 
-        
+            initialTimeSelection.Visibility = Visibility.Visible;
+            timeSelector.Visibility = Visibility.Collapsed;
+            currentPage = timeSelect;
+            syncLabels();
+            t.Start();
+        }
+
+
+        #endregion
+
+        #region timeSelectionMainScreenFunctionality
+        // Main time selection window, displaying both start and end times
+
+        private void endHour_Click(object sender, RoutedEventArgs e)
+        {
+            launchTimeSelector(HOUR, false);
+        }
+
+        private void endMin_Click(object sender, RoutedEventArgs e)
+        {
+            launchTimeSelector(MINUTE, false);
+        }
+
+        private void startHour_Click(object sender, RoutedEventArgs e)
+        {
+            launchTimeSelector(HOUR, true);
+        }
+
+        private void startMin_Click(object sender, RoutedEventArgs e)
+        {
+            launchTimeSelector(MINUTE, true);
+        }
+
+        private void launchTimeSelector(int selectorType, bool start)
+        {
+            this.selectorType = selectorType;
+            t.Stop();
+            initialTimeSelection.Visibility = Visibility.Collapsed;
+            timeSelector.Visibility = Visibility.Visible;
+            initializeSelector(selectorType);
+            this.start = start;
+            currentPage = timeSelectDetail;
+        }
+
+        public void initializeSelector(int selectorType)
+        {
+            this.selectorType = selectorType;
+            for (int i = 0; i < timeSelectorButtons.Length; i++)
+            {
+                if (selectorType == HOUR)
+                {
+                    timeSelectorButtons[i].Content = i;
+                }
+                else
+                {
+                    timeSelectorButtons[i].Content = 5 * i;
+                }
+
+            }
+        }
+        #endregion
+
+        // Resync labels with our own set values
+        private void syncLabels()
+        {
+            startTime.Text = sHour + ":" + (sMin < 10 ? "0" : "") + sMin;
+            endTime.Text = eHour + ":" + (eMin < 10 ? "0" : "") + eMin;
+        }
     }
 }
