@@ -489,7 +489,7 @@ namespace FinalProjectV1
             if(checkTime())
             {
                int remaing = calTime();
-               if (remaing < 0) warningMsg.Content = "Past time selction!";
+               if (remaing < 0) warningMsg.Content = "Past time selection!";
                else
                {
                    transitionToPage(WAIT_SCREEN);
@@ -773,6 +773,11 @@ namespace FinalProjectV1
             startOH.Stop();
             t.Stop();    
             transitionToPage(OH_SCREEN);   
+        }
+
+        private void all_MouseLeave(object sender, MouseEventArgs e)
+        {
+            setCurrentFocus(null);
         }
     }
 }

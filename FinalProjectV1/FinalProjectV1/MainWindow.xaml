@@ -44,7 +44,7 @@
             </RichTextBox>
 
 
-            <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="18" MouseEnter="allMouseEnter"></Button>
+            <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="18" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
         </Canvas>
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
@@ -80,7 +80,7 @@
 
             </RichTextBox>
 
-            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="18" MouseEnter="allMouseEnter"></Button>
+            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="18" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
             
         </Canvas>
 
@@ -93,16 +93,16 @@
 
             <Label Canvas.Left="75" Canvas.Top="150" Width="250" Height="50" Content="Start Time" FontSize="34" FontWeight="Bold"></Label>
             <TextBox Canvas.Left="450" Canvas.Top="225" Width="250" Height="80" Text="12" FontSize="50" TextAlignment="Center" Name="startTime"></TextBox>
-            <Button Name="startHour" Canvas.Left="75" Canvas.Top="225" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseEnter="allMouseEnter" Click="startHour_Click"></Button>
-            <Button Name="startMin" Canvas.Left="775" Canvas.Top="225" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseEnter="allMouseEnter" Click="startMin_Click"></Button>
+            <Button Name="startHour" Canvas.Left="75" Canvas.Top="225" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="startHour_Click"></Button>
+            <Button Name="startMin" Canvas.Left="775" Canvas.Top="225" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="startMin_Click"></Button>
 
             <Label Canvas.Left="75" Canvas.Top="350" Width="250" Height="50" Content="End Time" FontSize="34" FontWeight="Bold"></Label>
             <TextBox Canvas.Left="450" Canvas.Top="425" Width="250" Height="80" Text="13" FontSize="50" TextAlignment="Center" Name="endTime"></TextBox>
-            <Button Name="endHour" Canvas.Left="75" Canvas.Top="425" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseEnter="allMouseEnter" Click="endHour_Click"></Button>
-            <Button Name="endMin" Canvas.Left="775" Canvas.Top="425" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseEnter="allMouseEnter" Click="endMin_Click"></Button>
-            <Label Name="warningMsg"  Height="170" Width="370" Canvas.Right="10" Canvas.Bottom="20" Content="" FontSize="40" HorizontalContentAlignment="Center"></Label>
+            <Button Name="endHour" Canvas.Left="75" Canvas.Top="425" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave" Click="endHour_Click"></Button>
+            <Button Name="endMin" Canvas.Left="775" Canvas.Top="425" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave" Click="endMin_Click"></Button>
+            <Label Name="warningMsg"  Height="170" Width="390" Canvas.Right="10" Canvas.Bottom="20" Content="" FontSize="40" HorizontalContentAlignment="Center"></Label>
 
-            <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c2_Click" FontSize="18" MouseEnter="allMouseEnter"></Button>
+            <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c2_Click" FontSize="18" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
         </Canvas>
         
 
@@ -112,8 +112,8 @@
             
             <TextBox Canvas.Left="475" Canvas.Top="180" Width="200" Height="30" FontSize="20" Name="disTimeBeforeStart"></TextBox>
 
-            <Button Canvas.Left="420" Canvas.Top="230" Width="300" Height="100" Content="Change time" Name="ct" FontSize="22" Click="ct_Click" MouseEnter="allMouseEnter"></Button>
-            <Button Canvas.Left="420" Canvas.Top="380" Width="300" Height="100" Content="Start Office Hours NOW" Name="startOHNow" FontSize="22"  MouseEnter="allMouseEnter" Click="startOHNow_Click"></Button>
+            <Button Canvas.Left="420" Canvas.Top="230" Width="300" Height="100" Content="Change time" Name="ct" FontSize="22" Click="ct_Click" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
+            <Button Canvas.Left="420" Canvas.Top="380" Width="300" Height="100" Content="Start Office Hours NOW" Name="startOHNow" FontSize="22" MouseLeave="all_MouseLeave"  MouseEnter="allMouseEnter" Click="startOHNow_Click"></Button>
 
             <!--one display the time left until the office hour starts, one button to reset the time, (another one to recalibrate**not considered this time**)-->
             <!--a help button-->
@@ -165,20 +165,20 @@
 
             <Label Canvas.Right="300" Canvas.Bottom="200" Width="120" Height="50" Content="Time Left:" FontSize="22" Name="timeLeftLabel"></Label>
             <TextBox Canvas.Right="60" Canvas.Bottom="200" Width="220" Height="50" FontSize="20" Name="disTimeOver" ></TextBox>
-            <Button Canvas.Right="250" Canvas.Bottom="120" Width="150" Height="75" Content="-5" Name="min5Btn" Click="min5_Click" FontSize="34" MouseEnter="allMouseEnter"></Button>
-            <Button Canvas.Right="50" Canvas.Bottom="120" Width="150" Height="75" Content="+5" Name="plus5Btn" Click="plus5_Click" FontSize="34" MouseEnter="allMouseEnter"></Button>
+            <Button Canvas.Right="250" Canvas.Bottom="120" Width="150" Height="75" Content="-5" Name="min5Btn" Click="min5_Click" FontSize="34" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
+            <Button Canvas.Right="50" Canvas.Bottom="120" Width="150" Height="75" Content="+5" Name="plus5Btn" Click="plus5_Click" FontSize="34" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
         </Canvas>
         <Canvas Height="700" Width="1150" Name="timeSelector" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <Label VerticalContentAlignment="Center" Canvas.Left="25" Canvas.Top="300" Width="325" Height="100" Content="Start Minutes" FontSize="50" Name="timeSelectorLabel"></Label>
             <ListBox HorizontalContentAlignment="Stretch" Canvas.Left="375" Canvas.Top="27" Width="400"  Height="645" HorizontalAlignment="Stretch">
-                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click" MouseEnter="allMouseEnter"></Button>
-                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
-                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
-                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
-                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
-                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
-                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter"/>
-                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click" MouseEnter="allMouseEnter"></Button>
+                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
+                <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
+                <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
+                <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
+                <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
+                <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
+                <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
+                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
             </ListBox>
         </Canvas>
 
