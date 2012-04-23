@@ -489,26 +489,27 @@ namespace FinalProjectV1
             if(checkTime())
             {
                int remaing = calTime();
-               if (remaing < 0) MessageBox.Show("Past time selction!");
+               if (remaing < 0) warningMsg.Content = "Past time selction!";
                else
                {
                    transitionToPage(WAIT_SCREEN);
-                    startOH.Interval = TimeSpan.FromMilliseconds(calTime());
-                    startOH.Tick += new EventHandler(startedOH);
-                    startOH.Start();
+                   startOH.Interval = TimeSpan.FromMilliseconds(calTime());
+                   startOH.Tick += new EventHandler(startedOH);
+                   warningMsg.Content = "";
+                   startOH.Start();
                }
                //t.Start();
             }
             else
             {
-                MessageBox.Show("Wrong time selection!");
+                warningMsg.Content = "Wrong time selection!";
             }
         }
 
         private void plus5_Click(object sender, RoutedEventArgs e)
         {
             eMin = eMin + 5;
-            if (eMin >= 55) 
+            if (eMin > 55) 
             {
                 eMin = eMin % 60;
                 eHour++;
@@ -517,14 +518,19 @@ namespace FinalProjectV1
 
         private void min5_Click(object sender, RoutedEventArgs e)
         {
-            
-            eMin = eMin - 5;
-            if (eMin < 0)
+            int m = 0;
+            m = eMin - 5;
+            if (m < 0)
             {
-                --eHour;
-                if ((eHour - DateTime.Now.Hour) < 0) MessageBox.Show("No enought time for subtraction!");
-                else eMin = eMin + 60;
+                if ((eHour - DateTime.Now.Hour - 1) < 0) warningMsg.Content = "No enought time for subtraction!";
+                else
+                {
+                    --eHour;
+                    eMin = eMin + 55;
+                    warningMsg.Content = "";
+                }
             }
+            else eMin = eMin - 5;
         }
 
         private int calTime()
@@ -738,8 +744,8 @@ namespace FinalProjectV1
         // Resync labels with our own set values (NOTE: if we actually learned C# this could probably be done via data binding)
         private void syncLabels()
         {
-            startTime.Text = sHour + ":" + (sMin < 10 ? "0" : "") + sMin;
-            endTime.Text = eHour + ":" + (eMin < 10 ? "0" : "") + eMin;
+            startTime.Text =(sHour < 10 ? "0" : "") + sHour + ":" + (sMin < 10 ? "0" : "") + sMin;
+            endTime.Text =(eHour < 10 ? "0" : "") + eHour + ":" + (eMin < 10 ? "0" : "") + eMin;
         }
 
         // Switches to a different page.  Either you disable previous page, or hide it entirely
