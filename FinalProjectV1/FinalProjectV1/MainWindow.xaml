@@ -30,21 +30,21 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <RichTextBox Height="120" Width="210" Canvas.Left="800" Canvas.Top="210">
+            <RichTextBox Height="160" Width="210" Canvas.Left="800" Canvas.Top="210">
                 <FlowDocument>
                     <Paragraph FontSize="24">
                         With the cursor
                         <LineBreak/>
                         on the button,
                         <LineBreak/>
-                        push right hand
+                        do an upwards right hand chop
                     </Paragraph>
                 </FlowDocument>
 
             </RichTextBox>
 
 
-            <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="18" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
+            <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="24" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
         </Canvas>
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
@@ -67,20 +67,20 @@
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-                <RichTextBox Height="120" Width="210" Canvas.Left="800" Canvas.Top="210">
+                <RichTextBox Height="160" Width="210" Canvas.Left="800" Canvas.Top="210">
                 <FlowDocument>
                     <Paragraph FontSize="24">
                          With the cursor
                         <LineBreak/>
                           on the button,
                         <LineBreak/>
-                        push right hand
+                        do an upwards right hand chop
                     </Paragraph>
                 </FlowDocument>
 
             </RichTextBox>
 
-            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="18" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
+            <Button Name="c1" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c1_Click" FontSize="24" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
             
         </Canvas>
 
@@ -102,7 +102,7 @@
             <Button Name="endMin" Canvas.Left="775" Canvas.Top="425" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave" Click="endMin_Click"></Button>
             <Label Name="warningMsg"  Height="170" Width="390" Canvas.Right="10" Canvas.Bottom="20" Content="" FontSize="40" HorizontalContentAlignment="Center"></Label>
 
-            <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c2_Click" FontSize="18" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
+            <Button Name="c2" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="c2_Click" FontSize="24" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
         </Canvas>
         
 
@@ -122,8 +122,9 @@
         <Canvas Height="700" Width="1150" Name="OHStarted" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--most complicate one, need color viewer, dynamic arrange the tag, 
              these can only be set by prof: add 5 mins button, (read help)-->
+            <Label Content="Students attending (Leftmost has earliest question):" Width="580" Height="45" FontSize="24"></Label>
 
-            <Canvas Name="Student1" Height="75" Width="270" Canvas.Left="10" Canvas.Top="20" Visibility="Collapsed">
+            <Canvas Name="Student1" Height="75" Width="270" Canvas.Left="10" Canvas.Top="50" Visibility="Collapsed">
                 <Rectangle Name="Student1Back" Height="75" Width="270" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
                 <Border BorderBrush="Black" Height="75" Width="270" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student1Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
@@ -132,7 +133,7 @@
                 <Image Name="Student1Question" Height="65" Width="65" Canvas.Top="5" Canvas.Left="200" Source="question.jpg" Visibility="Collapsed"></Image>
             </Canvas>
 
-            <Canvas Name="Student2" Height="75" Width="270" Canvas.Left="290" Canvas.Top="20" Visibility="Collapsed">
+            <Canvas Name="Student2" Height="75" Width="270" Canvas.Left="290" Canvas.Top="50" Visibility="Collapsed">
                 <Rectangle Name="Student2Back" Height="75" Width="270" Canvas.Top="0" Canvas.Left="0" Opacity="0" Fill="Red"></Rectangle>
                 <Border BorderBrush="Black" Height="75" Width="270" BorderThickness="1" Canvas.Top="0" Canvas.Left="0"></Border>
                 <Image Name="Student2Pic" Height="65" Width="65" Canvas.Left="5" Canvas.Top="5"></Image>
@@ -171,14 +172,14 @@
         <Canvas Height="700" Width="1150" Name="timeSelector" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <Label VerticalContentAlignment="Center" Canvas.Left="25" Canvas.Top="300" Width="325" Height="100" Content="Start Minutes" FontSize="50" Name="timeSelectorLabel"></Label>
             <ListBox HorizontalContentAlignment="Stretch" Canvas.Left="375" Canvas.Top="27" Width="400"  Height="645" HorizontalAlignment="Stretch">
-                <Button Name="upButton" Height="80" Content="^" Click="upButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
+                <Button Name="upButton" Height="80" FontSize="40" Content="^" Click="upButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
                 <Button Name="l1Button" Height="80" Content="0" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
                 <Button Name="l2Button" Height="80" Content="5" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
                 <Button Name="l3Button" Height="80" Content="10" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
                 <Button Name="l4Button" Height= "80" Content="15" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
                 <Button Name="l5Button" Height="80" Content="20" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
                 <Button Name="l6Button" Height="80" Content="25" Background="White" FontSize="40" Click="lButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"/>
-                <Button Name="downButton" Height="80" Content="v" Click="downButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
+                <Button Name="downButton" Height="80" Content="v" FontSize="40" Click="downButton_Click" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave"></Button>
             </ListBox>
         </Canvas>
 
