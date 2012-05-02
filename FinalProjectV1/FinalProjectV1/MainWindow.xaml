@@ -14,7 +14,7 @@
         
         <Canvas Height="700" Width="1150" Name="helpForTimeout" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--There are several button in help screen, one is for control***, one is for setting time, one is for during office hour, one is for add 5 minutes-->
-            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="StuDB" FontSize="48" HorizontalContentAlignment="Center"></Label>
 
             <Label Height="50" Width="350" Canvas.Left="400" Canvas.Top="90" Content="First-time User Guide" FontSize="32" HorizontalContentAlignment="Center"></Label>
 
@@ -47,11 +47,11 @@
             <Button Name="cSpecial" Canvas.Right="50" Canvas.Top="600" Width="200" Height="80" Content="Continue" Click="cSpecial_Click"  FontSize="24" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter"></Button>
         </Canvas>
         <Canvas Height="700" Width="1150" Name="initialPage" HorizontalAlignment="Stretch" Visibility="Collapsed">
-            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="StuDB" FontSize="48" HorizontalContentAlignment="Center"></Label>
 
             <!--this screen appears everytime where the program starts, and after 15 seconds or user press continue, the starting canvas will appear-->
             <!--this is a gesture help screen too-->
-            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="StuDB" FontSize="48" HorizontalContentAlignment="Center"></Label>
 
             <Label Height="50" Width="350" Canvas.Left="400" Canvas.Top="90" Content="First-time User Guide" FontSize="32" HorizontalContentAlignment="Center"></Label>
 
@@ -86,7 +86,7 @@
 
         <Canvas Height="700" Width="1150" Name="initialTimeSelection" HorizontalAlignment="Stretch" Visibility="Collapsed">
             <!--a title ( we have changed this to a single page time selection)-->
-            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="StuDB" FontSize="48" HorizontalContentAlignment="Center"></Label>
 
 
             <Label Height="50" Width="350" Canvas.Left="400" Canvas.Top="90" Content="Select Time" FontSize="32" HorizontalContentAlignment="Center"></Label>
@@ -111,7 +111,7 @@
         
 
         <Canvas Height="700" Width="1150" Name="beforeStart" HorizontalAlignment="Stretch" Visibility="Collapsed">
-            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="Office Hour Helper" FontSize="48" HorizontalContentAlignment="Center"></Label>
+            <Label Height="80" Width="450" Canvas.Left="350" Canvas.Top="10" Content="StuDB" FontSize="48" HorizontalContentAlignment="Center"></Label>
             <Label Canvas.Left="400" Canvas.Top="130" Width="350" Height="40" Content="Time until office hour" FontSize="22" FontWeight="Bold" HorizontalContentAlignment="Center"></Label>
             
             <TextBox Canvas.Left="475" Canvas.Top="180" Width="200" Height="30" FontSize="20" Name="disTimeBeforeStart"></TextBox>
