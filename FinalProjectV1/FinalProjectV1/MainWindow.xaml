@@ -92,11 +92,15 @@
             <Label Height="50" Width="350" Canvas.Left="400" Canvas.Top="90" Content="Select Time" FontSize="32" HorizontalContentAlignment="Center"></Label>
 
             <Label Canvas.Left="75" Canvas.Top="150" Width="250" Height="50" Content="Start Time" FontSize="34" FontWeight="Bold"></Label>
+            <Button Canvas.Left="330" Canvas.Top="150" Content="AM" Width="150" Height="60" Name="startAm" FontSize="32" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="startAm_Click"></Button>
+            <Button Canvas.Left="770" Canvas.Top="150" Content="PM" Width="150" Height="60" Name="startPm" FontSize="32" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="startPm_Click"></Button>
             <TextBox Canvas.Left="450" Canvas.Top="225" Width="250" Height="80" Text="12" FontSize="50" TextAlignment="Center" Name="startTime"></TextBox>
             <Button Name="startHour" Canvas.Left="75" Canvas.Top="225" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="startHour_Click"></Button>
             <Button Name="startMin" Canvas.Left="775" Canvas.Top="225" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="startMin_Click"></Button>
 
             <Label Canvas.Left="75" Canvas.Top="350" Width="250" Height="50" Content="End Time" FontSize="34" FontWeight="Bold"></Label>
+            <Button Canvas.Left="330" Canvas.Top="350" Content="AM" Width="150" Height="60" Name="endAm" FontSize="32" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="endAm_Click"></Button>
+            <Button Canvas.Left="770" Canvas.Top="350" Content="PM" Width="150" Height="60" Name="endPm" FontSize="32" MouseLeave="all_MouseLeave" MouseEnter="allMouseEnter" Click="endPm_Click"></Button>
             <TextBox Canvas.Left="450" Canvas.Top="425" Width="250" Height="80" Text="13" FontSize="50" TextAlignment="Center" Name="endTime"></TextBox>
             <Button Name="endHour" Canvas.Left="75" Canvas.Top="425" Width="300" Height="80" Content="Set Hour" FontSize="34" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave" Click="endHour_Click"></Button>
             <Button Name="endMin" Canvas.Left="775" Canvas.Top="425" Width="300" Height="80" Content="Set Minute" FontSize="34" MouseEnter="allMouseEnter" MouseLeave="all_MouseLeave" Click="endMin_Click"></Button>

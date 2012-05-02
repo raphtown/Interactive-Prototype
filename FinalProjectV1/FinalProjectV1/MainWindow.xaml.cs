@@ -615,7 +615,7 @@ namespace FinalProjectV1
             {
                 if (selectorType == HOUR)
                 {
-                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 18) % 24;
+                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 5) % 12 +1;
                 }
                 else
                 {
@@ -632,7 +632,7 @@ namespace FinalProjectV1
             {
                 if (selectorType == HOUR)
                 {
-                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 6) % 24;
+                    timeSelectorButtons[i].Content = (int.Parse(timeSelectorButtons[i].Content.ToString()) + 5) % 12+1;
                 }
                 else
                 {
@@ -726,7 +726,7 @@ namespace FinalProjectV1
             {
                 if (selectorType == HOUR)
                 {
-                    timeSelectorButtons[i].Content = i;
+                    timeSelectorButtons[i].Content = i + 1;
                     if (start) timeSelectorLabel.Content = "Start Hour";
                     else timeSelectorLabel.Content = "End Hour";
                 }
@@ -744,8 +744,8 @@ namespace FinalProjectV1
         // Resync labels with our own set values (NOTE: if we actually learned C# this could probably be done via data binding)
         private void syncLabels()
         {
-            startTime.Text =(sHour < 10 ? "0" : "") + sHour + ":" + (sMin < 10 ? "0" : "") + sMin;
-            endTime.Text =(eHour < 10 ? "0" : "") + eHour + ":" + (eMin < 10 ? "0" : "") + eMin;
+            startTime.Text =(sHour < 10 ? "0" : "") + sHour + ":" + (sMin < 10 ? "0" : "") + sMin +"AM";
+            endTime.Text =(eHour < 10 ? "0" : "") + eHour + ":" + (eMin < 10 ? "0" : "") + eMin +"AM";
         }
 
         // Switches to a different page.  Either you disable previous page, or hide it entirely
@@ -778,6 +778,35 @@ namespace FinalProjectV1
         private void all_MouseLeave(object sender, MouseEventArgs e)
         {
             setCurrentFocus(null);
+        }
+
+        private void startAm_Click(object sender, RoutedEventArgs e)
+        {
+            sHour = sHour % 12;
+            startTime.Text = (sHour%12 < 10 ? "0" : "") + sHour%12 + ":" + (sMin < 10 ? "0" : "") + sMin + "AM";
+            //endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin;
+            
+        }
+
+        private void startPm_Click(object sender, RoutedEventArgs e)
+        {
+            sHour = sHour % 12 + 12;
+            startTime.Text = (sHour%12 < 10 ? "0" : "") + sHour%12 + ":" + (sMin < 10 ? "0" : "") + sMin + "PM";
+            //endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin;
+        }
+
+        private void endAm_Click(object sender, RoutedEventArgs e)
+        {
+            eHour = eHour % 12;
+            //startTime.Text = (sHour % 12 < 10 ? "0" : "") + sHour % 12 + ":" + (sMin < 10 ? "0" : "") + sMin ;
+            endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin + "AM";
+        }
+
+        private void endPm_Click(object sender, RoutedEventArgs e)
+        {
+            eHour = eHour % 12 + 12;
+            //startTime.Text = (sHour % 12 < 10 ? "0" : "") + sHour % 12 + ":" + (sMin < 10 ? "0" : "") + sMin;
+            endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin + "PM";
         }
     }
 }
