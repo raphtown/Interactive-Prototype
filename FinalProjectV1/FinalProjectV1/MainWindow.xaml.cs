@@ -67,7 +67,8 @@ namespace FinalProjectV1
         const int TIME_SELECT_DETAIL = 4;
         int previousPage; // Page we were on previously
         int currentPage;  // Page which we are currently on
-
+        bool sAM = true;
+        bool eAM = true;
         int sHour, sMin, eHour, eMin;
         System.Drawing.Point cursorPosition = new System.Drawing.Point(0, 0);//cursor control
         DispatcherTimer startOH = new DispatcherTimer();
@@ -522,7 +523,7 @@ namespace FinalProjectV1
             m = eMin - 5;
             if (m < 0)
             {
-                if ((eHour - DateTime.Now.Hour - 1) < 0) warningMsg.Content = "No enought time for subtraction!";
+                if (((eHour - DateTime.Now.Hour + 23) % 24) < 0) warningMsg.Content = "Not enough time for subtraction!";
                 else
                 {
                     --eHour;
@@ -538,23 +539,24 @@ namespace FinalProjectV1
             int m = sMin - 1 - DateTime.Now.Minute;
             int s = 60 - DateTime.Now.Second;
             int h = 0;
+            int sHourTemp = sHour + 12 * (sAM ? 0 : 1);
             if (m < 0)
             {
                 m = m + 60;
-                h = (sHour - DateTime.Now.Hour - 1) % 24;
+                h = (sHourTemp - DateTime.Now.Hour + 23) % 24;
             }
             else
-                h = sHour - DateTime.Now.Hour;
+                h = (sHourTemp - DateTime.Now.Hour + 24) % 24;
             return (h * 3600 + m * 60 + s) * 1000;
         }
 
         private Boolean checkTime()
         {
-            if (eHour > sHour)
+            if ((eHour % 12) > (sHour % 12) || (!eAM && sAM))
             {
                 return true;
             }
-            else if (eHour == sHour)
+            else if (eHour == sHour && eAM == sAM)
             {
                 if (eMin > sMin)
                     return true;
@@ -652,6 +654,14 @@ namespace FinalProjectV1
                 {
                     sHour = result;
                     eHour = sHour + 1;
+                    if (sHour == 12)
+                    {
+                        eHour = 1;
+                    }
+                    if (sHour == 11)
+                    {
+                        eAM = !sAM;
+                    }
                 }
                 else
                 {
@@ -744,8 +754,9 @@ namespace FinalProjectV1
         // Resync labels with our own set values (NOTE: if we actually learned C# this could probably be done via data binding)
         private void syncLabels()
         {
-            startTime.Text =(sHour < 10 ? "0" : "") + sHour + ":" + (sMin < 10 ? "0" : "") + sMin +"AM";
-            endTime.Text =(eHour < 10 ? "0" : "") + eHour + ":" + (eMin < 10 ? "0" : "") + eMin +"AM";
+
+            startTime.Text = (sHour < 10 ? "0" : "") + sHour + ":" + (sMin < 10 ? "0" : "") + sMin + (sAM ? "AM" : "PM");
+            endTime.Text = (eHour < 10 ? "0" : "") + eHour + ":" + (eMin < 10 ? "0" : "") + eMin + (eAM ? "AM" : "PM");
         }
 
         // Switches to a different page.  Either you disable previous page, or hide it entirely
@@ -782,31 +793,31 @@ namespace FinalProjectV1
 
         private void startAm_Click(object sender, RoutedEventArgs e)
         {
-            sHour = sHour % 12;
-            startTime.Text = (sHour%12 < 10 ? "0" : "") + sHour%12 + ":" + (sMin < 10 ? "0" : "") + sMin + "AM";
+            sAM = true;
+            syncLabels();
             //endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin;
             
         }
 
         private void startPm_Click(object sender, RoutedEventArgs e)
         {
-            sHour = sHour % 12 + 12;
-            startTime.Text = (sHour%12 < 10 ? "0" : "") + sHour%12 + ":" + (sMin < 10 ? "0" : "") + sMin + "PM";
+            sAM = false;
+            syncLabels();
             //endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin;
         }
 
         private void endAm_Click(object sender, RoutedEventArgs e)
         {
-            eHour = eHour % 12;
+            eAM = true;
             //startTime.Text = (sHour % 12 < 10 ? "0" : "") + sHour % 12 + ":" + (sMin < 10 ? "0" : "") + sMin ;
-            endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin + "AM";
+            syncLabels();
         }
 
         private void endPm_Click(object sender, RoutedEventArgs e)
         {
-            eHour = eHour % 12 + 12;
+            eAM = false;
             //startTime.Text = (sHour % 12 < 10 ? "0" : "") + sHour % 12 + ":" + (sMin < 10 ? "0" : "") + sMin;
-            endTime.Text = (eHour % 12 < 10 ? "0" : "") + eHour % 12 + ":" + (eMin < 10 ? "0" : "") + eMin + "PM";
+            syncLabels();
         }
     }
 }
