@@ -247,6 +247,8 @@ namespace FinalProjectV1
                         Student2Back.Opacity = 0.0;
                         Student2Question.Visibility = Visibility.Collapsed;
                         Student2Name.Text = "";
+                        Student2.SetValue(Canvas.LeftProperty, secondX);
+                        Student1.SetValue(Canvas.LeftProperty, firstX);
                     }
                 }
                 /*if (true)
