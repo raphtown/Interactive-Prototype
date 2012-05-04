@@ -246,6 +246,7 @@ namespace FinalProjectV1
                         stu2quest = false;
                         Student2Back.Opacity = 0.0;
                         Student2Question.Visibility = Visibility.Collapsed;
+                        Student2Name.Text = "";
                     }
                 }
                 /*if (true)
@@ -264,6 +265,7 @@ namespace FinalProjectV1
                 stu1quest = false;
                 Student1Back.Opacity = 0.0;
                 Student1Question.Visibility = Visibility.Collapsed;
+                Student1Name.Text = "";
             }
 
             if (currentPage == WAIT_SCREEN)
