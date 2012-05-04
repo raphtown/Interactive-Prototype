@@ -242,6 +242,10 @@ namespace FinalProjectV1
                     else
                     {
                         Student2.Visibility = Visibility.Collapsed;
+                        Student2Pic.Source = null;
+                        stu2quest = false;
+                        Student2Back.Opacity = 0.0;
+                        Student2Question.Visibility = Visibility.Collapsed;
                     }
                 }
                 /*if (true)
@@ -256,6 +260,10 @@ namespace FinalProjectV1
             else
             {
                 Student1.Visibility = Visibility.Collapsed;
+                Student1Pic.Source = null;
+                stu1quest = false;
+                Student1Back.Opacity = 0.0;
+                Student1Question.Visibility = Visibility.Collapsed;
             }
 
             if (currentPage == WAIT_SCREEN)
