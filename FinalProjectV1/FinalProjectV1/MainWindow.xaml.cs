@@ -165,7 +165,7 @@ namespace FinalProjectV1
 
             Skeleton sk = getFirstSke(e);
             //initialPage.Visibility = Visibility.Visible;
-            
+
             if (sk != null)
             {
                 if (currentPage == OH_SCREEN)
@@ -196,7 +196,7 @@ namespace FinalProjectV1
                         Student1Question.Visibility = Visibility.Collapsed;
                     }
                     double z = sk.Joints[JointType.Head].Position.Z;
-                    if (Student1Pic.Source == null&&z>1.6&&z<1.8)
+                    if (Student1Pic.Source == null && z > 1.6 && z < 1.8)
                     {
                         Student1Pic.Source = getHeadshot(sk, e.OpenColorImageFrame());
                     }
@@ -239,6 +239,10 @@ namespace FinalProjectV1
                             Student2Pic.Source = getHeadshot(sk2, e.OpenColorImageFrame());
                         }
                     }
+                    else
+                    {
+                        Student2.Visibility = Visibility.Collapsed;
+                    }
                 }
                 /*if (true)
                 {
@@ -249,6 +253,10 @@ namespace FinalProjectV1
                 Dictionary<JointType, Point3D> normalizedJointData = NormalizeJoints(sk);
                 RecognizeGesture(normalizedJointData);
             }
+            else
+            {
+                Student1.Visibility = Visibility.Collapsed;
+            }
 
             if (currentPage == WAIT_SCREEN)
             {
@@ -257,6 +265,8 @@ namespace FinalProjectV1
             else if (currentPage == OH_SCREEN)
             {
                 disTimeOver.Text = dis_time_left();
+                if(disTimeOver.Text.Equals("0:05:00"))
+                    SystemSounds.Beep.Play();
             }
             
         }
@@ -318,10 +328,11 @@ namespace FinalProjectV1
                 recognizer.UpdateJointData(normalizedJointData);
                 if (recognizer.Recognized)
                 {
-                    if (recognizer.name == "RightHandPush" && currentFocus != null)
+                    if (recognizer.name == "RightHandPush" )
                     {
                         SystemSounds.Beep.Play();
-                        currentFocus.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                        if(currentFocus != null)
+                            currentFocus.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                     }
                 }
             }
