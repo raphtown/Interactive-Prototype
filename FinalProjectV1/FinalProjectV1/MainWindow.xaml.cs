@@ -119,7 +119,7 @@ namespace FinalProjectV1
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //kinectSensorChooser1.KinectSensorChanged += new DependencyPropertyChangedEventHandler(kinectSensorChooser1_KinectSensorChanged);
+            kinectSensorChooser1.KinectSensorChanged += new DependencyPropertyChangedEventHandler(kinectSensorChooser1_KinectSensorChanged);
             //initialPage.Visibility = Visibility.Visible;
             System.Drawing.Point winPos = new System.Drawing.Point((int)this.Left, (int)this.Top);
             System.Drawing.Size winSize = new System.Drawing.Size((int)this.Width, (int)this.Height);
@@ -392,7 +392,7 @@ namespace FinalProjectV1
                 m = m + 60;
             }
             else
-                h = (eHour - DateTime.Now.Hour) % 24;
+                h = (eHour - DateTime.Now.Hour + 12) % 24;
             return h.ToString() + ":" + m.ToString() + ":" + s.ToString();
         }
 
